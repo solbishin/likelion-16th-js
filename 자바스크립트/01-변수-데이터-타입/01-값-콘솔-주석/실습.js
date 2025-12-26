@@ -50,9 +50,9 @@ false;
 console.log(9);
 
 // 문자(string) 값 출력
-console.log("자바스크립트 프로그램");
-console.log("자바스크립트 프로그램");
-console.log(`자바스크립트 프로그램`);
+console.log("자바스크립트 프로그램(작은 따옴표)");
+console.log("자바스크립트 프로그램(큰 따옴표)");
+console.log(`자바스크립트 프로그램(역 따옴표)`);
 
 // 논리(boolean) 값 출력
 console.log(false);
@@ -64,3 +64,8 @@ console.log(true);
 여러 줄
 주석 작성(multi line comment)
 */
+
+/**
+ * 특별한 주석
+ * JSDoc 사용시 활용
+ */
