@@ -47,33 +47,102 @@ console.log('탭\t\t\t문자')
 console.log('줄바꿈\n\t문자')
 console.log(`백슬래시\\문자`)
 
+// 문자 + 문자 (문자 연결)
+const materialType = '아이언'
+const heroGender = '맨'
+
+const hero = materialType + heroGender
+console.log(hero) // '아이언' + '맨' = '아이언맨'
+console.log('Java' + 'Script') // 'Java' + 'Script' = 'JavaScript'
+
 // --------------------------------------------------------------------------
 // 숫자 (Number)
 // --------------------------------------------------------------------------
 
 // 정수
+console.log(92_034)
 
 // 실수 (정수 + 소수)
+console.log(823 + 0.73)
 
 // 음수
+console.log(-100)
 
 // 큰 숫자
 
 // 과학적 표기법
 // 2.5 × 10^6 = 2,500,000
+console.log(25e5)
+console.log(2.5e6)
 
 // 특수 숫자 값
 // * Infinity
 // * -Infinity
 // * NaN
 
+// JavaScript안에서 안전하게 사용 가능한 큰/작은 함수
+// - Number.MAX_SAFE_INTEGER
+// - Number.MIN_SAFE_INTEGER
+console.log(Number.MAX_SAFE_INTEGER)
+console.log(Number.MIN_SAFE_INTEGER)
+
+// 수학 산술 연산자 (+, -, X, /)
+// 프로그래밍 산술 연산자 (+, -, *, /)
+// 산술 연산(숫자 값 끼리 계산)
+// 덧셈(add) 연산
+console.log(9 + 1) // 10
+console.log(100 + -20) // 80
+console.log(0.9 + 0.2) // 1.1
+
+// 뺄셈(subtract) 연산
+console.log(9 - 1) // 8
+console.log(100 - 20) // 80
+console.log(0.9 - 0.2) // 0.7
+
+// 곱셈(multiply) 연산
+console.log(9 * 1) // 9
+console.log(100 * 20) // 2e3 (2000, 2_000)
+console.log(0.9 * 0.2) // 0.18000000000000002
+
+// 나눗셈(divide) 연산
+console.log(9 / 1) // 9
+console.log(100 / 20) // 5
+console.log(0.9 / 0.2) // 4.5
+
+// 나머지(modulus) 연산
+console.log(9 % 3) // 0
+console.log(100 % 20) // 0
+console.log(31 % 5) // 1
+
+
+
 // --------------------------------------------------------------------------
 // 불리언 (Boolean)
 // --------------------------------------------------------------------------
 
 // true 값
+console.log(true)
+console.log(3 == '3') // 비교 연산자 --> boolean
 
 // false 값
+console.log(false)
+console.log(3 === '3') // 비교 연산자 --> boolean
+
+// --------------------------------------------------------------------------
+// 언디파인드 (Undefined)
+// --------------------------------------------------------------------------
+
+// 선언만 하고 값을 할당하지 않음
+// 1. 선언
+// 2. 초기화 : 의도적으로 값을 할당하지 않음(엔진이 초기값으로 undefied 할당)
+
+let memoryStick = undefined
+console.log(memoryStick) // undefined
+
+// undefined vs null 비교
+// undefined → 값이 없음 (자동)
+// null     → 값이 없음 (의도적)
+
 
 // --------------------------------------------------------------------------
 // 널 (Null)
@@ -82,17 +151,23 @@ console.log(`백슬래시\\문자`)
 // null 값 - 의도적으로 비어있음
 // 예시:
 // * 선택된 인덱스
+let selectedIndex = null // 개발자가 의도를 가지고 값을 비운 경우를 나타냄
+console.log(selectedIndex)
+selectedIndex = 3 // 4번째 박스가 선택됨 (상태)
+console.log(selectedIndex)
+selectedIndex = 1 // 2번째 박스가 선택됨 (상태: 시간의 흐름에 따라 변경된 값)
+console.log(selectedIndex)
+
 // * 로그인 사용자
+let signInUser = null // 로그인된 사용자가 없다. (의도를 가지고 비움)
+// 로그인 시도 (HTML Form)
+// 로그인 성공
+logInUser = '야무'
+console.log('로그인 사용자:', logInUser)
+// 로그아웃
+logInUser = null // 로그인 사용자가 없다(상태 변경)
+console.log('로그인 사용자:', logInUser)
 
-// --------------------------------------------------------------------------
-// 언디파인드 (Undefined)
-// --------------------------------------------------------------------------
-
-// 선언만 하고 값을 할당하지 않음
-
-// undefined vs null 비교
-// undefined → 값이 없음 (자동)
-// null     → 값이 없음 (의도적)
 
 // --------------------------------------------------------------------------
 // 심볼 (Symbol)
