@@ -159,7 +159,7 @@ selectedIndex = 1 // 2번째 박스가 선택됨 (상태: 시간의 흐름에 �
 console.log(selectedIndex)
 
 // * 로그인 사용자
-let signInUser = null // 로그인된 사용자가 없다. (의도를 가지고 비움)
+let logInUser = null // 로그인된 사용자가 없다. (의도를 가지고 비움)
 // 로그인 시도 (HTML Form)
 // 로그인 성공
 logInUser = '야무'
@@ -174,6 +174,21 @@ console.log('로그인 사용자:', logInUser)
 // --------------------------------------------------------------------------
 
 // 심볼 생성 - 항상 고유한 값
+// 문자열의 경우, 같은 key 값인 경우 동일한 값이다.
+const productAIdString = 'abc',
+  productBIdString = 'abc'
+      
+
+// 심볼 생성 - 항상 고유한 값
+// 심볼인 경우, 같은 키 값을 사용해도 각각 고유한 값이다.
+const productAIdSymbol = Symbol('abc'),
+      productBIdSymbol = Symbol('abc')
+
+// 고유햔 값인가? (조건: proudctAIdString와 productBIdString가 값이 달라야 한다.)
+// 비교 연산자 (두 값을 비교 -> 불리언 값 평가)
+// 두 값이 같다, true 불리언 평가 (고유하지 않다.)
+console.log('문자열을 사용할 때 고유하지 않은가?:', productAIdString == productBIdString) 
+console.log('심볼을 사용할 때 고유하지 않은가?:', productAIdSymbol == productBIdSymbol) 
 
 // 설명이 있는 심볼
 
