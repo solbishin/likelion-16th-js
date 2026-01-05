@@ -195,15 +195,37 @@ let SuperMario, User, ShoppingCart;
 
 // 사용자 기본 정보 (let 사용 - 변경 가능)
 // * 이름
-// * 나이
-// * 이메일
+{
+  let userName = "야무";
+  // * 나이
+  let userAge = 89;
+  // * 이메일
+  let userEmail = "yamoo@naver.com";
 
-// 정보 업데이트
+  console.log(userName, userAge, userEmail);
+
+  // 정보 업데이트
+  userName = "지훈";
+  userAge = 20;
+  userEmail = "yamoo@gmail.com";
+
+  console.log(userName, userAge, userEmail);
+}
 
 // 시스템 설정 (const 사용 - 변경 불가)
+
 // * 시스템 이름
+const SYSTEM_NAME = "macOS";
+
 // * 시스템 버전
+const SYSTEM_VERSION = "15.6.2";
+
 // * 최대 로그인 시도 횟수
+const MAX_LOGIN_ATTEMPTS = 3000; /* 3s (3000ms) */
+
+// TypeError: 상수에 다른 값을 할당하려 했기 때문
+// SYSTEM_NAME = "Windows";
+
 // * 세션 타임아웃
 
 // --------------------------------------------------------------------------
@@ -212,14 +234,21 @@ let SuperMario, User, ShoppingCart;
 
 // 상품 정보 (변경 가능한 변수)
 // * 상품 이름
+let productName = "노트북";
 // * 상품 가격
+let productPrice = 98_000;
 // * 상품 재고
+let productInventory = 102;
 // * 상품 카테고리
+let productCategory = "디지털 기기 / 랩탑";
 
 // 시스템 상수 (변경 불가)
 // * 부가세 10%
+const SURTAX = 0.1;
 // * 무료배송 기준 40,000원
+const SHIPPING_FREE = 40_000;
 // * 최소 주문 금액 10,000원
+const MIN_ORDER_AMOUNT = 10_000;
 
 // --------------------------------------------------------------------------
 // let vs const 선택 가이드
@@ -227,9 +256,12 @@ let SuperMario, User, ShoppingCart;
 
 // const 사용
 // 변경할 필요 없는 값
+let USER_SECRET_KEY = "kdafksdjfas";
 
 // let 사용
 // 값이 변경될 수 있는 값
+let phoneNumber = "010-0000-0000";
+phoneNumber = "010-1111-1111";
 
 // --------------------------------------------------------------------------
 // 실습 문제
@@ -237,9 +269,13 @@ let SuperMario, User, ShoppingCart;
 
 // 문제 1: 학생 정보를 저장하는 변수를 만드세요.
 // - 이름 (변경 가능)
+let 이름 = "박한영";
 // - 학년 (변경 가능)
+let 학년 = "4학년";
 // - 학번 (변경 불가)
+let 학번 = "2012456";
 // - 학교 이름 (변경 불가)
+let 학교_이름 = "대한 대학교";
 
 // 문제 2: 도서관 책 정보를 저장하는 변수를 만드세요.
 // - 책 제목 (변경 불가)
