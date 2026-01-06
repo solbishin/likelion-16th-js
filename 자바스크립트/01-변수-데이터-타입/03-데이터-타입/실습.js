@@ -266,18 +266,33 @@ console.log(장바구니)
 
 // --------------------------------------------------------------------------
 // typeof 연산자
+// 데이터 유형(type of data)
+// typeof 연산자는 데이터의 타입을 확인할 때 사용
+// typeof 데이터(값) 또는 표현식 -> 타입(유형) 값 (문자열 제공)
 // --------------------------------------------------------------------------
 
 // 기본 타입
 // * null
+console.log(typeof null) // 'object'
 // * undefined
+console.log(typeof undefined) // 'undefined'
 // * String
+console.log(typeof '데이터 타입을 문자 값으로 알려줌') // 'string'
 // * Number
+console.log(typeof 20260105) // 'number'
 // * Boolean
+console.log(typeof false) // 'boolean'
 // * BigInt
+console.log(typeof 900n) // 'bigint'
 // * Symbol
+console.log(typeof Symbol('y9')) // 'symbol'
 
 // 참조 타입
+console.group('객체 타입 ----------------------')
 // * Object
+console.log(typeof {}) // object
 // * Array
+console.log(typeof []) // 
 // * Function
+console.log(typeof function() {})
+console.groupEnd()
