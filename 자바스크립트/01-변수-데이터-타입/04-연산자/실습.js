@@ -295,39 +295,39 @@ console.log(is_logged_out)
 // 이중 부정 (!!) - boolean 변환 (Boolean() 대체)
 // '자바스크립트'
 console.log(Boolean('자바스크립트'))
-console.log(Boolean(!!'자바스크립트'))
+console.log(!!'자바스크립트')
 
 // '' 변환 출력 결과: false
 console.log(Boolean(''))
-console.log(Boolean(!!''))
+console.log(!!'')
 
 // ' ' 변환 출력 결과: true
 console.log(Boolean(' '))
-console.log(Boolean(!!''))
+console.log(!!'')
 
 // 0 변환 출력 결과: false
 console.log(Boolean(0))
-console.log(Boolean(!!0))
+console.log(!!0)
 
 // '0' 변환 출력 결과: true
 console.log(Boolean('0'))
-console.log(Boolean(!!'0'))
+console.log(!!'0')
 
 // 1 변환 출력 결과: true
 console.log(Boolean(1))
-console.log(Boolean(!!1))
+console.log(!!1)
 
 // '1' 변환 출력 결과: true
 console.log(Boolean('1'))
-console.log(Boolean(!!'1'))
+console.log(!!'1')
 
 // null 변환 출력 결과: false
 console.log(Boolean(null))
-console.log(Boolean(!!null))
+console.log(!!null)
 
 // undefined 변환 출력 결과: false
 console.log(Boolean(undefined))
-console.log(Boolean(!!undefined))
+console.log(!!undefined)
 
 
 // --------------------------------------------------------------------------
