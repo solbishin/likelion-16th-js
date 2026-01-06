@@ -371,6 +371,21 @@ console.log('장현주' < '최수인')
 // * == (동등): 값만 비교 (타입 변환 후 비교)
 // * === (일치): 타입과 값 모두 비교
 
+// 0 == '0' // false? true?
+
+// 사용자가 작성한 코드
+console.log(0 == '0')
+
+// JavaScript 엔진이 처리하는 코드
+// console.log(0 == Number('0'))
+
+// 사용자가 작성한 코드
+console.log(0 === '0')
+
+// JavaScript 엔진이 처리하는 코드
+console.log(0 === '0')
+
+
 
 // --------------------------------------------------------------------------
 // [비교 연산] 불일치 비교
@@ -385,20 +400,28 @@ console.log('장현주' < '최수인')
 
 // 예제: 할인 적용 조건
 let is_member = true
-let purchase_amount = 50000
+let purchase_amount = 24500
 // 멤버이고 구매 금액이 3만원 이상인 경우, 할인 적용
-let has_discount
+// A [멤버(true)] 그리고 (AND, &&) B[구매금액 >= 3e4] -> 참 또는 거짓
+let has_discount = is_member && (purchase_amount >= 3e4)
+console.log(has_discount)
 
 // 예제: 접근 권한 조건
 let is_admin = false
 let is_owner = true
 // 관리자이거나 주인인 경우, 접근 허용
-let can_access
+let can_access = is_admin || is_owner
+console.log(can_access)
 
 // 예제: 신선 유지 온도 조건
-let temperature = 25
+let temperature = 20
 // 온도가 18도 이상 26도 이하인 경우, 신선 유지
-let keep_fresh
+// 조건 A, 조건 B
+// 조건 A: 온도 >= 18 (temperature >= 18)
+// 조건 B: 온도 <= 26 (temperature <= 26)
+// 조건 A 그리고 조건 B (A && B)
+let keep_fresh = temperature >= 18 && temperature <= 26
+console.log(keep_fresh)
 
 
 // --------------------------------------------------------------------------
@@ -414,6 +437,38 @@ let keep_fresh
 // 주의사항
 // --------------------------------------------------------------------------
 // * 문자열 + 숫자 (문자)
-// * 문자열 - 숫자 (숫자)
+let input1 /* 애플 망고 개수 */ = '5',
+  input2 /* 참외 개수 */ = 9
+
+console.log(input2 + input1)
+console.log(input1 + input2)
+console.log(Number(input2) + Number(input1))
+
+console.log('5' + 9)
+console.log(5 + '9')
+
+// * 문자열(숫자형) - 숫자
+let input3 = '101', input4 = 8
+console.log(input3 - input4)
+console.log(input3 * input4)
+console.log(input3 / input4)
+
 // * 문제 해결 방법 (문자 → 숫자 변환 후 연산)
-// * 증가, 감소 연산자 위치 (전/후)
+console.log(Number(input3) - Number(input4))
+console.log(Number(input3) * Number(input4))
+console.log(Number(input3) / Number(input4))
+
+{
+  // * 증가, 감소 연산자 위치 (전/후)
+  let count = 5
+
+  // 전위: 먼저 증가/감소 후 사용
+  console.log(++count)
+  console.log(count)
+
+  count = 5
+
+  // 후위: 먼저 사용 후 증가/감소
+  console.log(count++)
+  console.log(count)
+}
