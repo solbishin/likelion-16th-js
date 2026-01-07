@@ -13,12 +13,13 @@ const LOAN_PERIOD = '14'    // 대출 기간
 // --------------------------------------------------------------------------
 
 // parseInt()를 사용해서 BOOK_PAGE를 숫자로 변환하고, 변환된 값과 값의 타입을 확인합니다.
-
+console.log(parseInt(BOOK_PAGE), typeof parseInt(BOOK_PAGE))
 
 // Number()를 사용해서 SHELF_NUMBER를 숫자로 변환하고, 변환된 값과 값의 타입을 확인합니다.
-
+console.log(Number(SHELF_NUMBER), typeof Number(SHELF_NUMBER))
 
 // + 연산자를 사용해서 LOAN_PERIOD를 숫자로 변환하고, 변환된 값과 값의 타입을 확인합니다.
+console.log(Number(LOAN_PERIOD), typeof Number(LOAN_PERIOD))
 
 
 // --------------------------------------------------------------------------
@@ -26,6 +27,7 @@ const LOAN_PERIOD = '14'    // 대출 기간
 // --------------------------------------------------------------------------
 
 // toString()을 사용해서 BOOK_COUNT를 문자로 변환하고, 변환된 값과 값의 타입을 확인합니다.
+console.log(BOOK_COUNT.toString, typeof Number(LOAN_PERIOD))
 
 
 // String()을 사용해서 BOOK_COUNT를 문자로 변환하고, 변환된 값과 값의 타입을 확인합니다.
