@@ -7,17 +7,29 @@ const TOTAL_BOOKS = 145        // 도서관 전체 보유 도서
 const BORROWED_TODAY = '12권'  // 오늘 대출된 책
 const RETURNED_TODAY = '8권'   // 오늘 반납된 책
 
+
+console.log(TOTAL_BOOKS)
+
+
 // BORROWED_TODAY를 숫자로 변환하세요.
+// console.log(Number(BORROWED_TODAY))
 
 // RETURNED_TODAY를 숫자로 변환하세요.
+// console.log(Number(RETURNED_TODAY))
 
 // 현재 대출 가능한 책의 수를 계산하세요.
+// Number(TOTAL_BOOKS) -= Number(BORROWED_TODAY)
+// TOTAL_BOOKS += RETURNED_TODAY
+
 
 // 대출 가능한 책이 100권 이상인지 확인하세요.
 
 // 결과를 출력하세요.
 // console.log('오늘 대출된 책 =', ___권)
+console.log('오늘 대출된 책 =', BORROWED_TODAY)
+
 // console.log('오늘 반납됩 책 =', ___권)
+console.log('오늘 반납됩 책 =', RETURNED_TODAY)
 // console.log('현재 대출 가능한 책의 수 = ', ___권)
 // console.log('대출 가능한 책이 100권 이상 =', 참/거짓)
 
