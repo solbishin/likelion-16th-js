@@ -136,7 +136,12 @@ console.log(tempHexCode)
 // 출력 결과(예시) : '#ff0000'
 console.log(hexCode)
 
+// 색상 코드(컴퓨터, 16진수) -> 색상 값(일상, 10진수) 변환
+const redHex = 'ff', greenHex = '80', blueHex = '00'
 
+console.log(parseInt(redHex, 16))
+console.log(parseInt(greenHex, 16))
+console.log(parseInt(blueHex, 16))
 
 
 // --------------------------------------------------------------------------
@@ -146,14 +151,24 @@ console.log(hexCode)
 // --------------------------------------------------------------------------
 
 // 출력 결과: 0 → false
+// 숫자 0 빼고 다 참
+console.log(Boolean(10))
+console.log(Boolean(1))
+console.log(Boolean(0))
+console.log(Boolean(-1))
+console.log(Boolean(-10))
 
 // 출력 결과: 1 → true
+console.log(Boolean(1))
 
 // 출력 결과: -1 → true
+console.log(Boolean(-1))
 
 // 출력 결과: 0.1 → true
+console.log(Boolean(0.1))
 
 // 출력 결과: -0.1 → true
+console.log(Boolean(-0.1))
 
 
 // --------------------------------------------------------------------------
@@ -163,10 +178,18 @@ console.log(hexCode)
 // --------------------------------------------------------------------------
 
 // 출력 결과: '' → false
+console.log(Boolean(''))
+console.log(!!'')
 
 // 출력 결과: ' ' → true
+console.log(' ')
+console.log(Boolean(' '))
+console.log(!!' ')
 
 // 출력 결과: '0' → true
+console.log('0')
+console.log(Boolean('0'))
+console.log(!!'0')
 
 
 // --------------------------------------------------------------------------
@@ -182,23 +205,35 @@ console.log(hexCode)
 // --------------------------------------------------------------------------
 
 // 출력 결과: Math.sqrt(-1) → NaN
+console.log(Math.sqrt(-1))
 
 // 출력 결과: 숫자 + NaN → NaN
+console.log(2 + parseFloat('the load'))
 
 // 출력 결과: undefined + undefined → NaN
+console.log(Number(undefined))
+
+let t, u
+console.log(t + u)
 
 // 출력 결과: 문자 / 숫자 → NaN
+console.log('320px' / 4)
+console.log(parseInt('320px', 10) / 4 + 'px')
 
 // 출력 결과: Number(str) → NaN
+console.log(Number('수요일'))
 
 // 출력 결과: parseInt(str) → NaN
+console.log(parseInt('오전 11시', 10))
 
 // 출력 결과: parseFloat(str) → NaN
+console.log(parseFloat('배터리 방전'))
 
 // 출력 결과: 0 / 0 → NaN
+console.log(0 / 0)
 
 // 출력 결과: Infinity - Infinity → NaN
-
+console.log(Infinity - Infinity)
 
 // --------------------------------------------------------------------------
 // NaN 확인
