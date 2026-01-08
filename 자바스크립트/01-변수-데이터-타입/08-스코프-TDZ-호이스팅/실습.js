@@ -1,3 +1,18 @@
+// 컴퓨터 메모리는 이미 sayHello 함수를 기억합니다.
+// 마치, 해당 영역의 가장 상위로 함수 선언문을 끌어올린 것처럼 보이죠?
+// 그래서 호이스팅(Hoisting)이라고 불러요. (용어 해설)
+// function myHouse() {
+//   // - 지역 변수 desk 선언 ('책상 위의 노트북')
+//   const desk = '책상 위의 노트북'
+//   // - 전역 변수 garden, 지역 변수 desk 콘솔에 출력
+//   console.log('garden:', garden)
+//   console.log('desk:', desk)
+// }
+
+// var 변수는 선언과 초기화가 동시 진행 (JS 엔진이 undefined 설정)
+// var sayBye 
+
+
 // --------------------------------------------------------------------------
 // 실습: 변수의 범위와 안전 수칙 (Scope & TDZ)
 // --------------------------------------------------------------------------
@@ -106,10 +121,9 @@ console.log(garden)
 console.log(notTdz)
 
 // tdz (초기화 이전 상태: <Uninitialized>)
-console.log(tdz)
+// console.log(tdz)
 
-
-let tdz = '✅ let, const 변수는 "안전펜스(TDZ)" 생성'
+let tdz // = '✅ let, const 변수는 "안전펜스(TDZ)" 생성'
 var notTdz = '⚠️ var 변수는 TDZ를 만들지 않아요.'
 
 console.log(tdz)
@@ -119,11 +133,15 @@ console.log(tdz)
 // --------------------------------------------------------------------------
 
 // 함수 선언보다 호출을 먼저 작성 (sayHello)
+console.log(sayHello())
 
-// 함수 sayHello 선언 ('안녕! JavaScript 🌼' 출력)
+// sayHello 함수 선언 ('안녕! JavaScript 🌼' 출력)
+function sayHello() {
+  return '안녕! JavaScript 🌼'
+}
 
-// 설명: 함수 선언문은 코드 맨 위로 끌어올려지므로, 
-//      선언 전에도 호출이 가능하도록 작동합니다.
+// 설명: 함수 선언문은 코드 맨 위로 끌어올려지는 것처럼 보이므로, 
+//      선언 전에도 호출이 가능하도록 작동합니다. (왜? 이미 메모리되어 있으므로)
 // 출력 결과: '안녕! JavaScript 🌼'
 
 
@@ -150,10 +168,18 @@ console.log(tdz)
 // --------------------------------------------------------------------------
 
 // 함수 표현식 선언 전, sayBye 호출 (ReferenceError 발생)
+// console.log(undefined()????) 
+// console.log(sayBye())
 
 // const 키워드를 사용해 sayBye 변수에 함수 표현식 할당 ('잘 가! JavaScript 👋' 출력)
+// let, const 선언 시, 메모리에 이름만 등록 [TDZ, 안전펜스] 초기화 [TDZ 해제]
+// var 선언 시, 메모리에 이름이 등록됨과 동시에 초기화(초기값이 없으면 undefined 설정) 함께 진행
+var sayBye = function () {
+  return '잘 가! JavaScript 👋'
+}
 
 // 함수 표현식 선언 후 sayBye 호출
+console.log(sayBye())
 
 // 설명:
 // 함수 표현식은 '변수 호이스팅' 규칙을 따릅니다.
