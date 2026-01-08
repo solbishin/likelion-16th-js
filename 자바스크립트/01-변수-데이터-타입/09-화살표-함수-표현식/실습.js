@@ -112,9 +112,25 @@ console.log(multiply(9, -3))
 
 // 일반적인 화살표 함수 (중괄호 {}와 return 키워드 사용)
 // 명시적 반환(Explicit Return) 함수 정의 (x + y 반환)
+const px2rem = (pxValue /* 100px */) => {
+  // 16px === 1rem
+  return parseFloat(pxValue) / 16
+}
+
+console.log(px2rem(16))
+console.log(px2rem('16'))
+console.log(px2rem('16px'))
 
 // 암묵적 반환을 사용하는 화살표 함수 (중괄호 {}와 return 생략)
 // 암묵적 반환(Implicit Return) 함수 정의 (x + y 반환)
+
+const rem2px = (remValue) => {
+  return parseFloat(remValue) * 16 + 'px'
+}
+
+console.log(rem2px(2))
+console.log(rem2px('2'))
+console.log(rem2px('2rem'))
 
 // 두 함수의 결과 비교 출력
 
@@ -123,9 +139,96 @@ console.log(multiply(9, -3))
 // 출력 결과: 두 함수 모두 동일한 덧셈 결과 출력
 
 
+// 함수 표현식 (⭐️⭐️)
+// const plus = function (x, y) { return x + y }
+// const minus = function (x, y) { return x - y }
+// const multiple = function (x, y) { return x * y }
+// const divide = function (x, y) { return x / y }
+
+// 화살표 함수 표현식 (⭐️⭐️⭐️⭐️⭐️)
+// const plus = (x, y) => x + y
+// const minus = (x, y) => x - x
+// const multiple = (x, y) => x * y
+// const divide = (x, y) => x / y
+
 // --------------------------------------------------------------------------
 // 객체(Object) 반환 시 주의사항
 // --------------------------------------------------------------------------
+
+// 반환: 사람 객체 { 이름: name, 나이: age, 취미: hobby }
+// 함수 선언문
+function createPerson(name, age, hobby) {
+
+  // 사람(인간) 추상화한 객체 생성
+  const 사람_객체 = {
+    이름: name,
+    나이: age + '살',
+    취미: hobby,
+  }
+
+  // 사람 객체 반환
+  return 사람_객체
+}
+
+const minji = createPerson('하민지', 17, '유튜브 시청')
+const junwoo = createPerson('박준우', 12, '골프')
+
+console.log(minji)
+console.log(junwoo)
+
+// 함수 표현식
+const createHuman = function (userName, userEmail, IQ) {
+  // 인간 객체 { 이름, 이메일, 지능 }
+  return {
+    name: userName,
+    email: userEmail,
+    intelligence: IQ
+  }
+}
+
+const hyoungju = createHuman('임형주', 'lim@company.io', 145)
+const sangsu = createHuman('김상수', 'kimss@develop.dev', 136)
+console.log(hyoungju)
+console.log(sangsu)
+
+
+// 화살표 함수 표현식
+// 집(하우스) 만드는 기능 (함수)
+// 집의 이름, 집의 유형, 집의 면적, 빌트인 여부
+const createHouse = (이름, 유형, 면적, 빌트인_여부) => {
+  const house = {
+    name: 이름,
+    type: 유형,
+    area: parseFloat(면적) + 'm^2',
+    isBuiltIn: 빌트인_여부
+  }
+  return house
+}
+
+// 정상 작동 안함 -> 중괄호를 value로 생각해야 하는데 function body로 생각함. 
+// const createHouse = (이름, 유형, 면적, 빌트인_여부) => {
+//     name: 이름,
+//     type: 유형,
+//     area: parseFloat(면적) + 'm^2',
+//     isBuiltIn: 빌트인_여부
+// }
+
+// 값으로 인식시키기 위해 소괄호로 감싸면 된다.
+const townHouse = (이름, 유형, 면적, 빌트인_여부) => ({
+  name: 이름,
+  type: 유형,
+  area: parseFloat(면적) + 'm^2',
+  isBuiltIn: 빌트인_여부
+})
+
+const 서초동_하우스 = createHouse('데상 아티스트', '아파트', 114, true)
+console.log(서초동_하우스)
+
+const 길음동_오피스텔 = createHouse('혜초룸', '오피스텔', 56, true)
+console.log(길음동_오피스텔)
+
+
+
 
 // 문자열 value를 받아 객체 { key: value }를 반환하는 createObject 함수 정의
 // 주의: 객체 리터럴의 중괄호 {}를 함수 본문 블록으로 착각하지 않도록 소괄호 ()로 감싸야 함
