@@ -14,13 +14,23 @@
 // 전역 변수 garden 선언 ('마당의 꽃')
 const garden = '마당의 꽃'
 
-// 블록(Block, {...}) - 지역 생성
+// --------------------------------------------------------------------------
+// 블록 스코프
+// 블록(Block, { ... }) - 지역 생성
+{
+  // 블록 내부의 범위(scope)에서만 
+  // 사용 가능한 지역변수(local variable)
+  // let, const 키워드로 정의된 변수 (✅ 외부에서 접근 불가능)
+  // 하지만, var 키워드로 정의된 변수는 지역 만들지 않음 (⚠️ 외부에서 접근 가능)
+  const blockVariable = '블록 내부의 변수'
+  console.log(blockVariable)
+}
 
-// 블록 내부에서만 사용 가능한 지역변수
-const blockVariable = '블록 내부의 변수'
-console.log(blockVariable)
+// console.log(blockVariable)
 
-// 함수 myHouse
+// --------------------------------------------------------------------------
+// 함수 스코프
+// 함수 myHouse 선언
 function myHouse() {
   // - 지역 변수 desk 선언 ('책상 위의 노트북')
   const desk = '책상 위의 노트북'
@@ -29,8 +39,8 @@ function myHouse() {
   console.log('desk:', desk)
 }
 
-
 myHouse()
+
 
 // 전역에서 garden, desk 변수 값 콘솔에 출력
 // - 함수 내부(지역)에서는 외부(전역) 변수에 접근할 수 있습니다.
@@ -67,15 +77,16 @@ const outer = function () {
   //   - 전역 변수 garden, 상위 함수 변수 livingRoom, 지역 변수 myRoom 출력
   console.log(garden)
   console.log(livingRoom)
-  // console.log(myRoomr)
+  // console.log(myRoom)
 }
-//   - 전역 변수 garden, 상위 함수 변수 livingRoom, 지역 변수 myRoom 출력
-console.log(garden)
-console.log(livingRoom)
-console.log(myRoom)
 
 // 함수 outer 호출
+outer()
 
+//   - 전역 변수 garden, 상위 함수 변수 livingRoom, 지역 변수 myRoom 출력
+console.log(garden)
+// console.log(livingRoom)
+// console.log(myRoom)
 
 // 설명: 변수를 찾을 때 현재 범위에 없으면, 점점 더 바깥 범위로 나가며 찾습니다.
 // 출력 결과:
@@ -83,6 +94,25 @@ console.log(myRoom)
 // - outer 함수 내부 지역 변수: '거실의 소파'
 // - inner 함수 내부 지역 변수: '내 방의 침대'
 
+// --------------------------------------------------------------------------
+// 안전펜스 (TDZ, 일시적 사각지대)
+// --------------------------------------------------------------------------
+
+// 변수 선언(생성, 초기화)
+// 생성만 한 시점
+
+// var 변수로 정의된 것은 호이스팅(끌어올려는 것처럼 보여요)
+// var 변수의 초기화가 없다면? JS 엔진이 undefined로 초기 값을 설정
+console.log(notTdz)
+
+// tdz (초기화 이전 상태: <Uninitialized>)
+console.log(tdz)
+
+
+let tdz = '✅ let, const 변수는 "안전펜스(TDZ)" 생성'
+var notTdz = '⚠️ var 변수는 TDZ를 만들지 않아요.'
+
+console.log(tdz)
 
 // --------------------------------------------------------------------------
 // 호이스팅 (Hoisting) - 함수 선언문
