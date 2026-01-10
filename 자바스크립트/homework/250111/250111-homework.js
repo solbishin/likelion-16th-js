@@ -37,3 +37,35 @@ let levelScore = 85.5
 
 // 12. "알림 수신 동의 여부"를 담는 변수를 선언하고 불리언 타입 값을 설정하세요.
 let deliverNotification = false
+
+
+// ✍ 함수 작성 과제
+
+// 1. 환영 메시지 생성
+// 회원 등급과 이름을 입력받아 맞춤형 환영 메시지를 출력하는 함수를 작성합니다.
+
+// VIP 회원: "🌟 VIP {이름}님, 특별한 혜택이 준비되어 있습니다!"
+// 일반 회원: "안녕하세요, {이름}님! 즐거운 쇼핑 되세요."
+
+// 기능: 회원 등급에 따라 다른 환영 메시지를 문자열로 반환
+// 매개변수: 회원 이름, 회원 등급
+// 반환값 타입: String
+// 비고: 함수 선언으로 작성
+
+// 
+
+function greeting(userName, userGrade) {
+  // VIP일 때 문구 출력
+  if (userGrade === 'VIP') {
+    return '🌟 VIP ' + userName + '님, 특별한 혜택이 준비되어 있습니다!'
+  }
+
+  // 일반 (회원) 등급일 때 문구 출력
+  else {
+    return '안녕하세요, ' + userName + '님! 즐거운 쇼핑 되세요.'
+  }
+}
+
+// 문구 출력 확인
+console.log(greeting('김철수', 'VIP'))
+console.log(greeting('김영희', '일반'))
