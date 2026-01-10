@@ -163,3 +163,46 @@ console.log(pwdValidation(123456789))
 console.log(pwdValidation('text'))
 console.log(pwdValidation('12345689'))
 
+// 4. 포인트 적립 계산
+// 결제 금액과 회원 등급을 입력받아 적립될 포인트를 계산하는 함수를 작성합니다.
+
+// 포인트 적립률
+// VIP : 결제 금액의 5%
+// GOLD : 결제 금액의 3%
+// SILVER : 결제 금액의 1%
+// 일반 : 결제 금액의 0.5%
+// [예] VIP 회원이 100,000원 결제 시 → 5,000 포인트 적립
+// 기능: 회원 등급에 따라 적립 포인트를 계산하여 반환 (소수점 버림)
+// 매개변수: 결제금액, 회원등급
+// 반환값 타입: Number
+// 비고: 함수 선언으로 작성
+
+function pointSaving(orderTotal, userClass) {
+  // 등급이 VIP일 때
+  if (userClass === 'VIP') {
+    return parseInt(orderTotal) * 0.05
+  }
+
+  // 등급이 GOLD일 때 
+  else if (userClass === 'GOLD') {
+    return parseInt(orderTotal) * 0.03
+  }
+
+  // 등급이 SILVER일 때 
+  else if (userClass === 'SILVER') {
+    return parseInt(orderTotal) * 0.01
+  }
+
+  // 등급이 일반일 때
+  else {
+    return parseInt(orderTotal) * 0.005
+  }
+
+}
+
+console.log(pointSaving(10000, 'VIP'))
+console.log(pointSaving(10000, 'GOLD'))
+console.log(pointSaving(10000, 'SILVER'))
+console.log(pointSaving(10000, '일반'))
+
+
