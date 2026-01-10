@@ -130,3 +130,36 @@ console.log(totalShippingFee(30000, '제주'))
 console.log(totalShippingFee(30000, '서울'))
 console.log(totalShippingFee(80000, ''))
 console.log(totalShippingFee(0, '서울'))
+
+// 3. 비밀번호 유효성 검사
+// 비밀번호 문자열을 입력받아 유효성 검사를 수행하는 함수를 작성합니다.
+
+// 비밀번호 규칙 
+// 최소 8자 이상
+// 최대 20자 이하
+// 위 조건을 모두 만족하면 true, 아니면 false 반환
+
+// 기능: 비밀번호가 규칙을 만족하는지 검사하여 불리언 값으로 반환
+// 매개변수: 비밀번호
+// 반환값 타입: Boolean
+// 비고: 화살표 함수 표현식으로 작성
+
+
+const pwdValidation = password => {
+  // 비밀번호 문자로 변경
+  const passwordInput = String(password)
+
+  // 비밀번호 자리수 확인
+  if (passwordInput.length >= 8 && passwordInput.length <= 20) {
+    return true
+  }
+  else {
+    return false
+  }
+
+}
+
+console.log(pwdValidation(123456789))
+console.log(pwdValidation('text'))
+console.log(pwdValidation('12345689'))
+
