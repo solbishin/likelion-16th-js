@@ -24,7 +24,7 @@ const defaultURL = 'https://api.example.com'
 let viewCount = 1234
 
 // 8. "배송 상태('준비중', '배송중', '배송완료' 중 하나)"를 담는 변수를 작성해보세요.
-let devliveryStatus = '준비중'
+let deliveryStatus = '준비중'
 
 // 9. "쿠폰 사용 가능 여부"를 담는 변수를 선언하고 불리언 타입 값을 설정하세요.
 let enableCoupon = true
@@ -69,3 +69,64 @@ function greeting(userName, userGrade) {
 // 문구 출력 확인
 console.log(greeting('김철수', 'VIP'))
 console.log(greeting('김영희', '일반'))
+
+// 2. 배송비 계산
+
+// 주문 금액과 배송 지역을 입력받아 배송비를 계산하는 함수를 작성합니다.
+
+// 배송비 정책 
+// 주문 금액이 50,000원 이상 : 무료 배송
+// 제주/도서 지역 : 추가 배송비 3,000원
+// 배송지역 값 예시 : "서울", "부산", "제주", "도서"
+// 일반 지역 : 기본 배송비 3,000원
+// 주문 금액이 0원 이하인 경우 : 0 반환
+// 배송지역이 빈 문자열인 경우 : 기본 배송비 적용
+
+// 기능: 주문 금액과 지역에 따라 배송비를 계산하여 반환
+// 매개변수: 주문 금액, 배송 지역
+// 반환값 타입: Number
+// 비고: 함수 표현식으로 작성
+
+const totalShippingFee = function (orderAmount, location) {
+  // 무료 배송비, 기본 배송비, 추가 배송비 정의
+  const freeShippingFee = 0
+  const defaultShippingFee = 3000
+  const additionalShippingFee = 3000
+
+
+  // 주문 금액이 0원 이하인 경우
+  if (orderAmount <= 0) {
+    return 0
+  }
+  // 배송 지역이 빈 문자열일 때
+  else if (location == '') {
+    return defaultShippingFee
+  }
+
+  // 주문 금액 5만원 이상, 제주, 도서 지방이 아닐 때
+  else if (orderAmount >= 50000 && (location !== '제주' && location !== '도서')) {
+    return freeShippingFee
+  }
+
+  // 주문 금액 5만원 이상, 제주나 도서 지방일 때
+  else if (orderAmount >= 50000 && (location == '제주' || location == '도서')) {
+    return freeShippingFee + additionalShippingFee
+  }
+
+  // 주문 금액 5만원 미만, 제주, 도서 지방이 아닐 때
+  else if (orderAmount < 50000 && (location !== '제주' && location !== '도서')) {
+    return defaultShippingFee
+
+  }
+  // 주문 금액 5만원 미만, 제주나 도서 지방일 때
+  else if (orderAmount < 50000 && (location == '제주' || location == '도서')) {
+    return defaultShippingFee + additionalShippingFee
+  }
+}
+
+console.log(totalShippingFee(70000, '제주'))
+console.log(totalShippingFee(70000, '서울'))
+console.log(totalShippingFee(30000, '제주'))
+console.log(totalShippingFee(30000, '서울'))
+console.log(totalShippingFee(80000, ''))
+console.log(totalShippingFee(0, '서울'))
