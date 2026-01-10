@@ -206,3 +206,57 @@ console.log(pointSaving(10000, 'SILVER'))
 console.log(pointSaving(10000, '일반'))
 
 
+// 5. 영화 티켓 가격 계산
+
+// 영화 정보와 관람 인원을 입력받아 총 결제 금액을 계산하는 함수를 작성합니다.
+
+// 요금 정책
+// 일반 영화: 14,000원
+// 3D 영화: 17,000원
+// IMAX 영화: 20,000원
+// 조조 할인(10시 이전 상영): 20% 할인
+// 영화타입 값 : "일반", "3D", "IMAX"
+// 조조할인여부 값 : true 또는 false 
+// [예] 3D 영화, 조조 상영, 2명 관람 → 27,200원 결제
+
+// 기능: 영화 타입, 조조 여부, 인원수를 고려하여 총 금액 계산
+// 매개변수: 영화 타입, 조조 할인여부, 관람 인원
+// 반환값 타입: Number
+// 비고: 함수 표현식으로 작성
+
+const filmPriceTotal = function (filmType, morningDiscount, guestCount) {
+  // 영화별 가격
+  const film = 14_000
+  const film3D = 17_000
+  const filmIMAX = 20_000
+
+  // 영화 기본 가격 정의
+  let defaultPrice = 0
+
+  // 영화 종류별 가격 정의
+  if (filmType === '일반 영화') {
+    defaultPrice = film
+  }
+  else if (filmType === '3D 영화') {
+    defaultPrice = film3D
+  }
+  else if (filmType === 'IMAX 영화') {
+    defaultPrice = filmIMAX
+  }
+
+  // 조조 할인 적용 후 가격
+  let priceTotal = defaultPrice
+  if (morningDiscount === true) {
+    priceTotal = defaultPrice * 0.8
+  }
+  else {
+    priceTotal = defaultPrice
+  }
+
+  return priceTotal * guestCount
+}
+
+console.log(filmPriceTotal('일반 영화', true, 10))
+console.log(filmPriceTotal('IMAX 영화', false, 1))
+
+
