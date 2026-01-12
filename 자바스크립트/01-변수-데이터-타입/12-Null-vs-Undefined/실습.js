@@ -457,3 +457,22 @@ console.log(getWeaponName(난쟁이))
 // { 이름: '전사', 레벨: 1, 무기: null, 방어구: null }
 // { 이름: '전사', 레벨: 1, 무기: '강철 검', 방어구: null }
 // '강철 검'
+
+
+{
+  // &&, || 조건 처리
+
+  // 표현식(Expression)
+  // - 계산 후, 값을 구하는 과정(평가)
+
+  // 표현식에서의 논리곱(&&, AND) 연산자
+  // - 첫 번째 거짓 같은 값(Falsy)를 찾는 연산자
+  let result1 = 1 && {} && '' && -1 && 10n && [0, 1, 2]
+  console.log(result1)
+
+  // 표현식에서의 논리합(||, OR) 연산자
+  // - 첫 번째 참 같은 값(Truthy)를 찾는 연산자
+  let result2 = 'false' || '' || null || undefined || Symbol()
+  console.log(result2)
+
+}
