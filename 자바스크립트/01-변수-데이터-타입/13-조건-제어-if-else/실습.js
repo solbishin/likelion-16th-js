@@ -145,24 +145,25 @@ if (!isLightColorRed) {
 // 보다 크다(>), 크거나 같다(>=) 연산자
 
 // 24 > 23 결과 출력
-
+console.log(24 > 23)
 
 // 24 > 24 결과 출력
+console.log(24 > 24)
 
 
 // 24 >= 24 결과 출력
-
+console.log(24 >= 24)
 
 // 보다 작다(<), 작거나 같다(<=) 연산자
 
 // 24 < 25 결과 출력
-
+console.log(24 < 25)
 
 // 24 < 24 결과 출력
-
+console.log(24 < 24)
 
 // 24 <= 24 결과 출력
-
+console.log(24 <= 24)
 
 // 설명:
 // 크기 비교 연산자는 주로 숫자를 비교할 때 사용합니다.
@@ -179,15 +180,16 @@ if (!isLightColorRed) {
 // 완전히 동일(===), 완전히 다름(!==) 연산자
 
 // 24 === 24 결과 출력
-
+console.log(24 === 24)
 
 // 24 !== 24 결과 출력
-
+console.log(24 !== 24)
 
 // '24' === 24 결과 출력 (타입이 다름)
-
+console.log(24 === '24')
 
 // '24' !== 24 결과 출력 (타입이 다름)
+console.log(24 !== '24')
 
 
 // 설명:
@@ -208,16 +210,16 @@ if (!isLightColorRed) {
 // 느슨한 비교 (==, !=) - 타입 자동 변환
 
 // '24' == 24 결과 출력 (문자열이 숫자로 자동 변환)
-
+console.log(24 == '24')
 
 // '24' != 24 결과 출력 (문자열이 숫자로 자동 변환)
-
+console.log(24 != '24')
 
 // 0 == false 결과 출력 (false가 0으로 자동 변환)
-
+console.log(0 == false)
 
 // 1 == true 결과 출력 (true가 1로 자동 변환)
-
+console.log(1 == true)
 
 // 엄격한 비교 (===, !==) - 타입 변환 없음
 
@@ -250,19 +252,19 @@ if (!isLightColorRed) {
 // Number() 함수를 사용하여 다양한 값을 숫자로 변환
 
 // '24'를 Number() 함수에 전달하여 결과 출력
-
+// 24
 
 // true를 Number() 함수에 전달하여 결과 출력
-
+// 1
 
 // false를 Number() 함수에 전달하여 결과 출력
-
+// 0
 
 // null을 Number() 함수에 전달하여 결과 출력
-
+// 0
 
 // undefined를 Number() 함수에 전달하여 결과 출력
-
+// NaN
 
 // 설명:
 // Number() 함수는 값을 숫자로 변환합니다.
@@ -281,16 +283,53 @@ if (!isLightColorRed) {
 // --------------------------------------------------------------------------
 
 // lightColor 변수에 '노란색' 할당
+let lightColor = '노란색'
+console.log(lightColor)
 
+// 색상이 '빨간색'으로 변경(할당)
+lightColor = '빨간색'
+console.log(lightColor)
+
+// 색상이 '초록색'으로 변경(할당)
+lightColor = '초록색'
+console.log(lightColor)
+
+if (lightColor === '빨간색') {
+  console.log('신호등 앞에서 멈춰야 합니다.')
+}
+if (lightColor === '초록색') {
+  console.log('좌우를 살피고 건널목을 여유있게 건넙니다.')
+}
+if (lightColor === '노란색') {
+  console.log('좌우를 살피고 건널목을 빠르게 건너갑니다.')
+}
+
+if (lightColor === '빨간색') {
+  console.log('신호등 앞에서 멈춰야 합니다.')
+}
+else if (lightColor === '초록색') {
+  console.log('좌우를 살피고 건널목을 여유있게 건넙니다.')
+}
+else {
+  console.log('좌우를 살피고 건널목을 빠르게 건넙니다.')
+}
 
 // if … else if … else 문 작성
 // 조건 1: lightColor가 '빨간색'인 경우
 //   - '신호등 앞에서 멈춰야 합니다.' 출력
+if (lightColor === '빨간색') {
+  console.log('신호등 앞에서 멈춰야 합니다.')
+}
 // 조건 2: lightColor가 '초록색'인 경우
 //   - '좌우를 살피고 건널목을 여유있게 건넙니다.' 출력
-// 그 외의 경우
+// 그 외의 경우 (빨간색도 초록색도 아닌 노란색)
+else if (lightColor === '초록색') {
+  console.log('좌우를 살피고 건널목을 여유있게 건넙니다.')
+}
 //   - '좌우를 살피고 건널목을 빠르게 건너갑니다.' 출력
-
+else {
+  console.log('좌우를 살피고 건널목을 빠르게 건넙니다.')
+}
 
 // 설명:
 // else if 문을 사용하면 여러 조건을 순차적으로 검사할 수 있습니다.
