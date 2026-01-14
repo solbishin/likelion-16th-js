@@ -52,39 +52,30 @@
 
 // --------------------------------------------------------------------------
 // document.querySelector - 전체 문서 탐색
-// --------------------------------------------------------------------------
-
+// -------------------------------------------------------------------------
 
 // 1. ID 선택자를 사용하여 '#chapter' 요소를 선택하고 콘솔에 출력하세요.
-const chapterElement = document.querySelector('#content')
-console.log(chapterElement) // Element 또는 null
+let chapterElement = document.getElementById('chapter')
+chapterElement = document.querySelector('#chapter')
+// console.log(chapterElement) // Element 또는 null
 
 // 조건 처리 (문서에 요소가 존재하는지 검토)
 // chapterElement || console.warn('#chapter 요소가 문서에 없습니다.')
 // if (!chapterElement) {
-if (chapterElement === null) {
-  console.warn('#chapter 요소가 문서에 없습니다.')
-}
+checkElementWarn(chapterElement, '#chapter')
 
 // 2. 클래스 선택자를 사용하여 '.sr-only' 요소를 선택하고 콘솔에 출력하세요.
 const screenReaderOnlyElement = document.querySelector('.sr-only')
-console.log(screenReaderOnlyElement)
+// console.log(screenReaderOnlyElement)
 
-if (screenReaderOnlyElement === null) {
-  console.warn('.a11y-hidden 선택자로 요소를 찾을 수 없습니다.')
-}
+checkElementWarn(screenReaderOnlyElement, '.sr-only')
 
 // 3. 속성 선택자를 사용하여 title에 'Model'이 포함된([title*="Model"]) 요소를 선택하세요.
 const modelElement = document.querySelector('[title*="Model"]')
-console.log(modelElement)
+// console.log(modelElement)
 
-if (modelElement === null) {
-  console.warn('[title*="Model"] 선택자로 요소를 찾을 수 없습니다.')
-}
+checkElementWarn(modelElement, '[title*="Model"]')
 
-// 설명:
-// querySelector는 CSS와 동일한 선택자 방식을 사용하여 요소를 선택합니다.
-// 일치하는 대상이 여러 개여도 '가장 먼저 발견된 첫 번째' 요소만 반환합니다.
 
 // 반복되는 코드를 재사용하기 위해 함수를 작성하기로 했다.
 // 함수(기능)에 걸맞는 이름을 작성하기로 했다.
@@ -94,23 +85,24 @@ function checkElementWarn(element, selector) {
   // 요소가 문서에 존재하는지 검증
   // 문서에 요소가 없다면? 콘솔에 경고
   if (element === null) {
-    console.warn(selector + ' 선택자로 요소를 찾을 수 없습니다.')
+    console.warn(selector + ' 선택자로 문서에서 요소를 찾을 수 없습니다.')
   }
 }
 
+
 // 설명:
 // querySelector는 CSS와 동일한 선택자 방식을 사용하여 요소를 선택합니다.
-// 일치하는 대상이 여러 개여도 '가장 먼저 발견된 첫 번째' 요소를 반환합니다.
+// 일치하는 대상이 여러 개여도 '가장 먼저 발견된 첫 번째' 요소만 반환합니다.
 
-const firstPElement = document.querySelector('p')
-console.log(firstPElement) // 문서에 <p> 요소가 2개 있어도 첫번째 것만 반환
+// const firstPElement = document.querySelector('p') 
+// console.log(firstPElement) // 문서에 <p> 요소가 2개 있어도 첫 번째 것만 반환
 
-const liElement = document.querySelector('li')
-console.log(liElement)
+
 
 // --------------------------------------------------------------------------
 // element.querySelector - 특정 범위 내 탐색
 // --------------------------------------------------------------------------
+
 // 문서의 모든 <li> 요소 중 첫 번째 매칭되는 요소 반환 (없을 경우, null 반환)
 // CSS 선택자가 복잡한 구조일 수록 문서의 대상(요소)을 찾는데 더 많은 시간을 소요 (권장 ❌) 
 // const liElement = document.querySelector('.musicians > li:first-child')
@@ -120,14 +112,29 @@ console.log(liElement)
 const musicianList = document.querySelector('.musicians')
 checkElementWarn(musicianList, '.musicians')
 
+const gameList = document.querySelector('.games')
+// console.log(gameList)
+
 // 2. musicianList 변수(이미 선택된 요소) 내부에서만 'li' 요소를 찾아 출력하세요.
 const firstMusician = musicianList.querySelector('li')
 checkElementWarn(firstMusician, 'li:fisrt-child')
-console.log(firstMusician)
+// console.log(firstMusician)
+
+const firstGame = gameList.querySelector('li')
+// console.log(firstGame)
 
 // 설명:
 // 특정 서가(부모 요소)를 지정하고 그 안에서 책(자식 요소)을 찾는 방식입니다.
 // 코드의 의도가 명확해지고, 다른 구역의 요소와 충돌할 버그를 예방하며, 성능 면에서도 효율적입니다.
+
+
+// 게임 목록의 모든 아이템(게임) 찾아 집합으로 반환
+const allGames = gameList.querySelectorAll('li')
+console.log(allGames) // NodeList [li, li, li] (3)
+
+// 뮤지션 목록의 모든 아이템(뮤지션) 찾아 집합으로 반환
+const allMusicans = musicianList.querySelectorAll('li')
+console.log(allMusicans)
 
 
 // --------------------------------------------------------------------------
