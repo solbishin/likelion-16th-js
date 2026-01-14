@@ -6,24 +6,39 @@
 // * element.querySelector() : 특정 요소 내부에서만 탐색합니다.
 // --------------------------------------------------------------------------
 
-// 아주 오래 전 웹 브라우저 세상에서 사용했던 오래된 방법 (비표준)
+
+// 아주 오래 전 웹 브라우저 세상에서 사용했던 오래된 방법 (⚠️ 비표준: Microsoft사의 IE 브라우저)
 // console.log(document.all) // HTMLAllCollection []
 
 // 그리고 시간이 흘러 사람들은 표준의 필요성을 절실히 느끼기 시작
-// 표준 API를 만들기 시작했는데... 
+// 표준 API를 만들기 시작했는데... (✅ 표준)
 // console.log(document.getElementsByTagName('p')) // HTMLCollection []
 
-// 그런데 여러 요소들을 수집하는 것 말고, 
-// 문서에서 고유한 id 속성을 가진 단 하나의 요소를 선택하는 방법이 필요
-// console.log(document.getElementById('content')) // HTMLElement {}
 
-// <head>요소 (객체) 선택
+// 브라우저에서 하는 일
+// * HTML 파서(해석 프로그램) 
+//   - *.html 파일 파싱(해석) -> DOM 생성
+// * JavaScript 엔진 
+//   - *.js 파일 처리 -> DOM에 접근/조작
+//   - *.js 파일 처리하는 동안 HTML 파서는 대기 상태가 됨. (동기식, 일을 안하고 대기 중...)
+
+
+// 그런데 여러 요소들을 수집하는 것 말고, 
+// 문서에서 고유한 id 속성을 가진 단 하나의 요소를 선택하는 방법이 필요 (✅ 표준)
+console.log(document.getElementById('content')) // Element (찾은 경우) 또는 null (못찾은 경우)
+
+// <html> 요소(객체) 선택
+// console.log(document.documentElement)
+// console.log(document.querySelector('html'))
+
+// <head> 요소(객체) 선택
+// console.log(document.head)
 // console.log(document.querySelector('head'))
 
-// <title>요소 (객체) 선택
+// <title> 요소(객체) 선택
 // console.log(document.querySelector('title'))
 
-// <meta />요소(객체) 선택
+// <meta /> 요소(객체) 선택
 // console.log(document.querySelector('meta'))
 
 // <body> 요소(객체) 선택
@@ -32,11 +47,13 @@
 
 // <article> 요소(객체) 선택
 // console.log(document.querySelector('article'))
-console.log(document.querySelector('#content'))
+// console.log(document.querySelector('#content'))
+
 
 // --------------------------------------------------------------------------
 // document.querySelector - 전체 문서 탐색
 // --------------------------------------------------------------------------
+
 
 // 1. ID 선택자를 사용하여 '#chapter' 요소를 선택하고 콘솔에 출력하세요.
 
