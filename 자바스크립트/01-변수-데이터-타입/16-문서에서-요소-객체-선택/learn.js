@@ -98,15 +98,32 @@ function checkElementWarn(element, selector) {
   }
 }
 
+// 설명:
+// querySelector는 CSS와 동일한 선택자 방식을 사용하여 요소를 선택합니다.
+// 일치하는 대상이 여러 개여도 '가장 먼저 발견된 첫 번째' 요소를 반환합니다.
+
+const firstPElement = document.querySelector('p')
+console.log(firstPElement) // 문서에 <p> 요소가 2개 있어도 첫번째 것만 반환
+
+const liElement = document.querySelector('li')
+console.log(liElement)
+
 // --------------------------------------------------------------------------
 // element.querySelector - 특정 범위 내 탐색
 // --------------------------------------------------------------------------
+// 문서의 모든 <li> 요소 중 첫 번째 매칭되는 요소 반환 (없을 경우, null 반환)
+// CSS 선택자가 복잡한 구조일 수록 문서의 대상(요소)을 찾는데 더 많은 시간을 소요 (권장 ❌) 
+// const liElement = document.querySelector('.musicians > li:first-child')
+// console.log(liElement)
 
 // 1. 먼저 부모 요소인 '.musicians'를 찾아 변수 musicianList에 할당하세요.
-
+const musicianList = document.querySelector('.musicians')
+checkElementWarn(musicianList, '.musicians')
 
 // 2. musicianList 변수(이미 선택된 요소) 내부에서만 'li' 요소를 찾아 출력하세요.
-
+const firstMusician = musicianList.querySelector('li')
+checkElementWarn(firstMusician, 'li:fisrt-child')
+console.log(firstMusician)
 
 // 설명:
 // 특정 서가(부모 요소)를 지정하고 그 안에서 책(자식 요소)을 찾는 방식입니다.
