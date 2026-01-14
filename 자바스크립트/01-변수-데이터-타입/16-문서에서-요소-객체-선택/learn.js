@@ -25,7 +25,7 @@
 
 // 그런데 여러 요소들을 수집하는 것 말고, 
 // 문서에서 고유한 id 속성을 가진 단 하나의 요소를 선택하는 방법이 필요 (✅ 표준)
-console.log(document.getElementById('content')) // Element (찾은 경우) 또는 null (못찾은 경우)
+// console.log(document.getElementById('content')) // Element (찾은 경우) 또는 null (못찾은 경우)
 
 // <html> 요소(객체) 선택
 // console.log(document.documentElement)
@@ -56,7 +56,15 @@ console.log(document.getElementById('content')) // Element (찾은 경우) 또�
 
 
 // 1. ID 선택자를 사용하여 '#chapter' 요소를 선택하고 콘솔에 출력하세요.
+const chapterElement = document.querySelector('#content')
+console.log(chapterElement) // Element 또는 null
 
+// 조건 처리 (문서에 요소가 존재하는지 검토)
+// chapterElement || console.warn('#chapter 요소가 문서에 없습니다.')
+// if (!chapterElement) {
+if (chapterElement === null) {
+  console.warn('#chapter 요소가 문서에 없습니다.')
+}
 
 // 2. 클래스 선택자를 사용하여 '.sr-only' 요소를 선택하고 콘솔에 출력하세요.
 
