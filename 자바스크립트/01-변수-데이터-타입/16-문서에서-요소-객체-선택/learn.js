@@ -67,15 +67,36 @@ if (chapterElement === null) {
 }
 
 // 2. 클래스 선택자를 사용하여 '.sr-only' 요소를 선택하고 콘솔에 출력하세요.
+const screenReaderOnlyElement = document.querySelector('.sr-only')
+console.log(screenReaderOnlyElement)
 
+if (screenReaderOnlyElement === null) {
+  console.warn('.a11y-hidden 선택자로 요소를 찾을 수 없습니다.')
+}
 
 // 3. 속성 선택자를 사용하여 title에 'Model'이 포함된([title*="Model"]) 요소를 선택하세요.
+const modelElement = document.querySelector('[title*="Model"]')
+console.log(modelElement)
 
+if (modelElement === null) {
+  console.warn('[title*="Model"] 선택자로 요소를 찾을 수 없습니다.')
+}
 
 // 설명:
 // querySelector는 CSS와 동일한 선택자 방식을 사용하여 요소를 선택합니다.
 // 일치하는 대상이 여러 개여도 '가장 먼저 발견된 첫 번째' 요소만 반환합니다.
 
+// 반복되는 코드를 재사용하기 위해 함수를 작성하기로 했다.
+// 함수(기능)에 걸맞는 이름을 작성하기로 했다.
+// 기능: 문서에 요소가 존재하는지 확인한 후, 존재하지 않을 경우 콘솔에 경고하기로 했다.
+// 목적: 현재 어떤 상황의 문제가 발생했는지 개발자에게 알리고자 한다.
+function checkElementWarn(element, selector) {
+  // 요소가 문서에 존재하는지 검증
+  // 문서에 요소가 없다면? 콘솔에 경고
+  if (element === null) {
+    console.warn(selector + ' 선택자로 요소를 찾을 수 없습니다.')
+  }
+}
 
 // --------------------------------------------------------------------------
 // element.querySelector - 특정 범위 내 탐색
