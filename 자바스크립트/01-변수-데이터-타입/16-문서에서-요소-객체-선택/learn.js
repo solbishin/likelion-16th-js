@@ -159,3 +159,52 @@ console.log(allMusicans)
 // 2. 모든 요소를 가져오려면 querySelectorAll(selector)을 사용해야 합니다.
 // 3. document는 전체를 대상으로, element는 그 내부를 대상으로 검색 범위를 좁힙니다.
 // 4. 대상을 정확히 가리키는 것이 DOM 조작의 첫 번째 단계입니다.
+
+// --------------------------------------------------------------------------
+// 실습
+// --------------------------------------------------------------------------
+// 1. id 속성으로 DOM 요소를 선택하여 콘솔 패널에 출력해봅니다.
+//    - querySelector('#idName')
+{
+  const exorcistCharacters = document.querySelector('#exorcist-characters')
+  // console.log(exorcistCharacters)
+}
+//    - getElementById('idName') ✅
+{
+  const exorcistCharacters = document.getElementById('exorcist-characters')
+  // console.log(exorcistCharacters)
+
+  // 2. id 속성으로 선택한 DOM 요소에서 다음을 수행하세요.
+  //     1. 태그 또는 클래스 이름, 속성 이름/값 등을 사용해 "박요한"을 선택해보세요.
+  //     1-1. 태그 이름으로 찾기
+  let yohan = null
+  yohan = exorcistCharacters.getElementsByTagName('li').item(0)
+  //     1-2. 선택자로 찾기
+  yohan = exorcistCharacters.querySelector('li') // 'li:first-child'
+  //     1-3. 클래스 이름으로 찾기
+  yohan = exorcistCharacters.getElementsByClassName('character').item(0)
+  //     1-4. 속성 이름과 값으로 찾기 (class, data-type)
+  yohan = exorcistCharacters.querySelector('[class="character yo-han"]')
+  yohan = exorcistCharacters.querySelector('[data-type="hero"]')
+
+  console.log(yohan) // <li> (HTML Code) → HTMLLiElement (DOM Object)
+
+  //     2. 태그 또는 클래스 이름, 속성 이름/값 등을 사용해 "최강림"을 선택해보세요.
+  let masterChoi = null
+  //     2-1. 태그 이름으로 찾기
+  masterChoi = exorcistCharacters.getElementsByTagName('li').item(1)
+  //     2-2. 선택자로 찾기
+  masterChoi = exorcistCharacters.querySelector('li:nth-child(2)')
+  //     2-3. 클래스 이름으로 찾기
+  masterChoi = exorcistCharacters.getElementsByClassName('character').item(1)
+  //     2-4. 속성 이름과 값으로 찾기
+  masterChoi = exorcistCharacters.querySelector('[class="character master-choi"]')
+  masterChoi = exorcistCharacters.querySelector('[data-type="master"]')
+  console.log(masterChoi)
+
+  //     3. 태그 또는 클래스 이름, 속성 이름/값 등을 사용해 "악령"을 선택해보세요.
+  //     3-1. 태그 이름으로 찾기
+  //     3-2. 선택자로 찾기
+  //     3-3. 클래스 이름으로 찾기
+  //     3-4. 속성 이름과 값으로 찾기
+}
