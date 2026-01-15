@@ -144,4 +144,12 @@ body {
   & .font-bold {
     font-weight: 700;
   }
+
+  & .is-danger {
+    color: red;
+  }
+
+  & .is-success {
+    color: green;
+  }
 }
