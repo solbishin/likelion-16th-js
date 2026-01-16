@@ -1,117 +1,104 @@
 // --------------------------------------------------------------------------
-// 실습: 콜백과 비동기 (Callback & Asynchronous)
+// 실습: JavaScript 작동 원리 (Event Loop)
 // --------------------------------------------------------------------------
-// * 주문(Call): 함수를 실행하며 작업을 요청함
-// * 진동벨(Callback): 나중에 작업이 끝나면 실행될 함수를 인자로 전달함
-// * 비동기(Async): 커피가 나올 때까지 멈추지 않고 다른 일을 처리함
-// --------------------------------------------------------------------------
-
-const body = document.body,
-  orderButton = document.querySelector('.order-button'),
-  statusText = document.querySelector('.status'),
-  logList = document.querySelector('.log-list')
-
-// --------------------------------------------------------------------------
-// 1. 이벤트 리스너와 콜백
+// * Call Stack: 함수 실행 중심 (프링글스 통 - 후입선출)
+// * Web API: 비동기 작업 대행소 (setTimeout 등)
+// * Task Queue: 대기열 (버스 정류장 - 선입선출)
+// * Event Loop: 콜 스택과 큐를 연결하는 감시자
 // --------------------------------------------------------------------------
 
-// 클릭 이벤트가 발생했을 때 실행될 "콜백 함수"를 등록합니다.
-// 콜백 함수 : coffeeReadyCallback
-orderButton.addEventListener('click', () => {
-  console.log('[1] 점원에게 "따뜻한 라떼"를 주문했습니다.')
-  console.log('[2] 상태 : 커피 제조 중... (비동기 작업 시작)')
+const runBtn = document.querySelector('.run-button'),
+  codeBlock = document.querySelector('.code-block')
 
-  // 3초(3s === 3000ms) 뒤에 커피가 완성된다고 가정
-  // setTimeout은 대표적인 비동기 함수입니다.
-  window.setTimeout(() => {
-    console.log('[3] 메뉴가 준비되었습니다. (비동기 작업 완료)')
-  }, 3000)
+// --------------------------------------------------------------------------
+// 코드 실행 흐름 분석 실습
+// --------------------------------------------------------------------------
 
-  console.log('[4] 진동벨을 받고 자리로 돌아와 스마트폰을 봅니다. (차단 방지)')
+runBtn.addEventListener('click', () => {
+  // 코드 블록 초기화
+  codeBlock.innerHTML = ''
+
+  // [퀴즈] 아래 함수들의 실행 순서는 어떻게 될까요?
+  // bar()
+  // foo()
+  // baz()
 })
 
-// JavaScript는 싱글 스레드(한 번에 하나의 일만 수행 가능)
-// 동기(sync) 처리
-// 1 -> 2 -> 3 -> 4
 
-// 비동기(async) 처리
-// 1 -> 2 -> 4 -> 3
-
-// --------------------------------------------------------------------------
-// 2. 동기(Sync) vs 비동기(Async) 이해하기
-// --------------------------------------------------------------------------
-
-// [실습] 아래 주석을 해제하면 '코드 블로킹'이 무엇인지 경험할 수 있습니다.
-// 주의:  ⚠️ 브라우저가 멈출 수 있으니 확인 후 바로 다시 주석 처리하세요!
-
-// codeBlockingDemo()
-
-
-// --------------------------------------------------------------------------
-// 3. 커스텀 콜백 함수 만들기
-// --------------------------------------------------------------------------
-
-/**
- * 작업을 수행하고 완료되면 콜백을 실행하는 함수
- * @param {Function} callback - 작업 완료 후 실행할 함수
- */
-function completeTask(callback) {
-  console.log('작업 시작(비동기 처리 시작)') // [1] 
-  setTimeout(callback, 2000)
-  console.log('작업 완료(비동기 처리 완료)') // [3]
-}
-
-// [연습] completeTask를 호출하면서 익명 콜백 함수를 전달해 보세요.
-completeTask(() => {
-  console.log('비동기 처리된 작업이 모두 마무리되었습니다') // [2]
-})
-
-// click 커스텀 함수
-// 이 함수의 요소(객체)에 클릭 이벤트 설정
-// 콜백 함수 전달
-// 특정 시간 뒤에 작동
-
-function delayClick(element, callback, timeout) {
-  element.addEventListener('click', () => {
-    setTimeout(callback, timeout)
-  })
-}
-
-delayClick(orderButton, () => { alert('메뉴 주문이 들었습니다!') }, 1500)
-
-
-
-
+// 설명:
+// 모든 동기 함수(bar, foo, baz)가 종료되어 콜 스택이 비워지면
+// 이벤트 루프가 큐에 대기 중이던 setTimeout의 콜백을 스택으로 가져옵니다.
 
 
 // --------------------------------------------------------------------------
 // 핵심 요약!
 // --------------------------------------------------------------------------
-// 1. 자바스크립트는 '싱글 스레드'라 한 번에 한 일만 하지만, '비동기'로 차단을 막습니다.
-// 2. 콜백은 "나중에 일이 끝나면 알려줘"라고 맡겨놓은 함수입니다.
-// 3. 비동기 처리를 통해 사용자 경험(UX)이 멈추지 않는 매끄러운 웹을 만듭니다.
+// 1. JavaScript 엔진은 한 번에 하나의 일(Call Stack)만 합니다.
+// 2. 시간이 걸리는 일(Timer, Ajax 등)은 브라우저(Web API)에 맡깁니다.
+// 3. Web API에서 끝난 일은 '큐'에서 자기 차례를 기다립니다.
+// 4. 이벤트 루프는 '콜 스택'이 텅 비었을 때만 '큐'의 작업을 스택으로 옮깁니다.
+// --------------------------------------------------------------------------
 
+// [생각해보기] 
+// 만약 setTimeout의 시간을 0으로 설정하면, '[2]'는 바로 출력될까요?
 
 
 
 // --------------------------------------------------------------------------
 
-function addLog(message) {
-  const li = document.createElement('li')
-  const time = new Date().toLocaleTimeString()
-  li.textContent = '[' + time + '] ' + message
-  logList.prepend(li)
+function log(message) {
+  const p = document.createElement('p')
+  p.textContent = '>' + message
+  codeBlock.appendChild(p)
+  console.log(message)
 }
 
-function coffeeReadyCallback() {
-  addLog('🔔 지이잉- 커피가 완성되었습니다! (콜백 실행)')
-  statusText.textContent = '상태 : 주문하신 음료가 나왔습니다.'
-  document.body.style.backgroundColor = 'var(--surface-color)'
+function foo() {
+  return log('[1] (콜 스택에서 즉시 실행)')
 }
 
-function codeBlockingDemo() {
-  addLog('로봇이 피자를 기다리느라 멈췄습니다...')
-  const start = Date.now()
-  while (Date.now() - start < 5000) { }
-  addLog('5초가 지나서야 다음 일을 할 수 있습니다.')
-} 
+function bar() {
+  log('bar() 실행 시작')
+
+  // setTimeout은 Web API로 넘겨집니다.
+  // 500ms(0.5초) 뒤에 콜백 함수가 '큐'로 들어갑니다.
+  setTimeout(() => {
+    log('[2] (비동기 콜백: 큐를 거쳐 스택이 비었을 때 실행)')
+  }, 500)
+
+  log('bar() 실행 종료')
+}
+
+function baz() {
+  return log('[3] (콜 스택에서 즉시 실행)')
+}
+
+
+// --------------------------------------------------------------------------
+
+피자_주문시키기('더블 치즈', 피자_도착_알림)
+바닥_청소()
+의류_정리()
+
+function 바닥_청소() {
+  console.log('🤖 바닥 청소를 진행합니다.')
+}
+
+function 의류_정리() {
+  console.log('🤖 의류 정리를 진행합니다.')
+}
+
+function 피자_주문시키기(메뉴, 콜백) {
+  피자집_주문('🤖 ' + 메뉴 + ' 피자를 주문할게요. 집 주소는...')
+  setTimeout(콜백, 5000)
+}
+
+function 피자집_주문(주문_메시지) {
+  console.log('%cOOO 피자입니다.', 'color: #2583e2')
+  console.log(주문_메시지)
+  console.log('%c네. 주문 확인했습니다. 좀만 기다려주세요.', 'color: #2583e2')
+}
+
+function 피자_도착_알림() {
+  console.log('🤖 피자가 도착했습니다. 이제 피자를 드실 수 있어요.')
+}
