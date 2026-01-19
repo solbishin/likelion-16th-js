@@ -6,8 +6,59 @@
 // * 초보자 : 오류 상황에 당황하며 자신의 논리 오류를 수용하기 어려워함
 // * 전문가 : 오류를 당연한 과정으로 받아들이고 침착하게 단서를 추적함
 // --------------------------------------------------------------------------
+const button = document.querySelector('.button')
 
+button.addEventListener('click', e => {
+  console.log('버튼 클릭!')
+})
+// --------------------------------------------------------------------------
 
+const saveButton = document.querySelector('#save-btn')
+
+saveButton.addEventListener('click', () => {
+  alert('저장되었습니다!')
+})
+// --------------------------------------------------------------------------
+
+const alarmButton = document.querySelector('.alarm-button')
+// const handleRing = function () {
+//   window.alert('알림!')
+//   // 암묵적 undefined 반환
+//   // addEventListener에 undefined가 설정되도 오류가 출력되지 않음
+// }
+alarmButton.addEventListener('click',
+  function handleRing() {
+    window.alert('알림!')
+  })
+
+// --------------------------------------------------------------------------
+
+const submitButton = document.querySelector('.submit-btn')
+
+submitButton.addEventListener('click', () => {
+  console.log('제출 완료!')
+})
+
+// --------------------------------------------------------------------------
+const closeButton = document.querySelector('.close-btn')
+
+closeButton.addEventListener('click', () => {
+  console.log('닫기 버튼 클릭!')
+})
+
+// --------------------------------------------------------------------------
+const cart = document.querySelector('[data-id="cart"]')
+const price = cart.querySelector('[data-id="price"]').textContent
+const quantity = cart.querySelector('[data-id="quantity"]').textContent
+const calcButton = cart.querySelector('[data-id="calc-button"]')
+const resultDisplay = cart.querySelector('[data-id="total-result"]')
+
+calcButton.addEventListener('click', () => {
+  const priceNumber = Number(price.replace(',', ''))
+  const quantityNumber = Number(quantity)
+  const total = priceNumber * quantityNumber
+  resultDisplay.textContent = total.toLocaleString()
+})
 // --------------------------------------------------------------------------
 // 성장 마인드셋 분석 실습
 // --------------------------------------------------------------------------
@@ -54,7 +105,7 @@ function greetUser() {
 // [시나리오 02] 선언만 하고 사용하지 않는 변수 (리소스 정리)
 // 'isLoggedIn' 변수 밑에 노란색 또는 빨간색 줄이 있나요? 
 // 린터는 "안 쓸 거면 지워서 코드를 가볍게 만드세요"라고 조언합니다.
-const isLoggedIn = true 
+const isLoggedIn = true
 
 // [시나리오 03] 전역 변수(Global) 처리법
 // 브라우저 환경이 아닌 곳에서 'window'나 'document'를 쓰면 린터가 당황할 수 있습니다.
