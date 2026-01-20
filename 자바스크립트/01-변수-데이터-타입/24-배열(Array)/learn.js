@@ -87,7 +87,11 @@ allDatas[10] = 'add item' // [숫자(0), ... , 함수(9), 문자(10)]
 console.log(allDatas)
 console.log(allDatas.length)
 
+// 좋은 습관
 allDatas[allDatas.length] = '멋사 16기!!'
+// 나쁜 습관
+allDatas[12] = '멋사 16기'
+
 console.log(allDatas) // Array(12) [2026, '2026년', ... , 함수(9), 문자(10)]
 
 // 인덱스를 사용해 항목 수정
@@ -149,7 +153,37 @@ console.log(allDatas) // Array(12) [2026, 2026, ... , 함수(9), 문자(10)]
 // 린터(Linter) 점검 실습: 아래 코드의 '빨간 줄' 원인을 찾아보세요.
 // --------------------------------------------------------------------------
 
-// const shoppingCart = ['두부', '양파', '대파']
+let Cart = ['두부', '양파', '대파']
+console.log(Cart)
 
-// // ⚠️ 여기서 린터가 'no-const-assign' 경고를 보냅니다.
-// shoppingCart = ['계란', '우유']
+// 배열 값 비우기(모두 제거)
+Cart.length = 0
+console.log(Cart)
+
+// 새 값으로 채우기
+Cart[0] = '계란'
+Cart[1] = '우유'
+console.log(Cart)
+
+
+// ⚠️ 여기서 린터가 'no-const-assign' 경고를 보냅니다.
+// Cart = ['계란', '우유']
+
+// --------------------------------------------------------------------------
+// 실습 풀이
+// --------------------------------------------------------------------------
+// 정석적 방식으로 배열 객체 생성
+// const webTechniques = new Array('HTML', 'CSS', 'JavaScript')
+const webTechniques = []
+webTechniques[0] = 'HTML'
+webTechniques[1] = 'CSS'
+webTechniques[2] = 'JavaScript'
+console.log(webTechniques)
+
+const instructors = ['야무', '슬비']
+const yamoo9 = instructors[0]
+console.log(yamoo9)
+
+instructors[1] = '김데레사'
+console.log(instructors[1])
+console.log(instructors)
