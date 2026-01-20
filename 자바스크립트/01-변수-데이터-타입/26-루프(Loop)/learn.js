@@ -7,10 +7,47 @@
 // * for...in : 객체 장부의 상세 정보(Key)를 확인합니다.
 // --------------------------------------------------------------------------
 
+const draw = (n) => '화면에 ' + n + '번째 그림을 그리다.'
+
+// 화면에 [n]번 드로잉하고 싶다.
+let count = 0
+
+console.log(draw(++count))
+console.log(draw(++count))
+console.log(draw(++count))
+console.log(draw(++count))
+console.log(draw(++count))
+console.log(draw(++count))
+console.log(draw(++count))
+console.log(draw(++count))
+console.log(draw(++count))
+console.log(draw(++count))
+console.log(draw(++count))
+console.log(draw(++count))
+console.log(draw(++count))
+console.log(draw(++count))
+console.log(draw(++count))
 
 // --------------------------------------------------------------------------
 // while 문
 // --------------------------------------------------------------------------
+// if...else 문 (조건 흐름 제어문)
+// 조건: ifCount가 5보다 작을 경우 "참"
+// 조건이 "참"이면 코드 블록 1회 실행
+let ifCount = 0
+if (ifCount < 5) {
+  ifCount = ifCount + 1
+  console.log(ifCount)
+}
+
+// while 문 (반복 흐름 제어문)
+// 조건: 반복횟수가 5보다 작을 경우 "참"
+// 조건이 "참"이면 코드 블록 반복 실행 (조건이 참일 동안)
+let iterationCount = 0
+while (iterationCount < 5) {
+  iterationCount = iterationCount + 1
+  console.log(iterationCount)
+}
 
 
 // --------------------------------------------------------------------------
