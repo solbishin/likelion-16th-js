@@ -6,9 +6,101 @@
 // * .length : 호텔에 체크인한 총 손님의 수
 // * .at() : 뒤에서부터 방을 찾을 수 있는 만능 마스터 키
 // --------------------------------------------------------------------------
-const members = [101, 201] //배열 객체(Array Object)
+// const members = [] //배열 객체(Array Object)
 const shoppingCart = ['김', '참치', '오이', '단무지', '맛살']
 console.log(shoppingCart)
+
+// JavaScript 생성자 함수 (Constructor: 객체 생성하는 함수)
+// 요구사항: 배열(Array) 객체를 생성하고 싶다.
+// 정석적인 방법: new 생성자_함수
+
+// 우리가 그동안 사용해왔던 생성자 함수
+// String()
+// Number() or +'10'
+// Boolean() or !!
+// new BigInt(10) or 10n
+
+const likeLionMembers = new Array('야무', '파랑', '노랑')
+console.log(likeLionMembers)
+
+const likeLionMembersArray = ['야무', '파랑', '노랑']
+console.log(likeLionMembersArray)
+
+// --------------------------------------------------------------------------
+// 다양한 값 담기
+// --------------------------------------------------------------------------
+const allDatas = [
+  2026, // 숫자 값
+  '2026년', // 문자 값
+  true, // 논리 값
+  null, // null 값
+  undefined, // undefined 값
+  Symbol(), // Symbol 값
+  BigInt(2026), // BigInt 값
+  new Object(), // 생성된 객체
+  new Array(), // 생성된 배열(객체)
+  new Function(), // 생성된 함수
+]
+
+console.log(allDatas)
+
+// --------------------------------------------------------------------------
+// 배열이 포함하는 항목의 총 개수
+// --------------------------------------------------------------------------
+const allDatasCount = allDatas.length
+console.log(allDatasCount)
+
+// --------------------------------------------------------------------------
+// 배열 항목 꺼내기(항목의 위치를 인덱스로 가져옴)
+// --------------------------------------------------------------------------
+
+const firstData = allDatas[0]
+console.log(firstData, typeof firstData)
+
+const thirdData = allDatas[3 - 1]
+console.log(thirdData, typeof thirdData)
+
+const unknownData = allDatas[100]
+console.log(unknownData)
+
+if (!unknownData) {
+  console.log('allDatasms 100번째 인덱스가 없어요!')
+}
+
+// --------------------------------------------------------------------------
+// 마지막 항목에 접근하는 방법 (전체 개수 - 1)
+// --------------------------------------------------------------------------
+let lastData = allDatas(allDatasCount - 1)
+console.log(lastData)
+console.log(typeof lastData)
+
+lastData = allDatas.at(-1)
+console.log(lastData)
+console.log(typeof lastData)
+
+// --------------------------------------------------------------------------
+// 배열 인덱스의 항목 수정
+// --------------------------------------------------------------------------
+// 인덱스를 사용해 새 항목 추가
+console.log(allDatas[9]) // [숫자(0), ... , 함수(9)]
+allDatas[10] = 'add item' // [숫자(0), ... , 함수(9), 문자(10)]
+console.log(allDatas)
+console.log(allDatas.length)
+
+allDatas[allDatas.length] = '멋사 16기!!'
+console.log(allDatas) // Array(12) [2026, '2026년', ... , 함수(9), 문자(10)]
+
+// 인덱스를 사용해 항목 수정
+// 1번 인덱스의 값을 수정
+
+// 1번방의 항목 가져오기 (읽기)
+const secondItem = allDatas[1]
+
+// 1번방에 계산된 값 항목으로 설정하기(쓰기)
+console.log(allDatas[1]) // '2026년'
+allDatas[1] = parseInt(secondItem, 10)
+console.log(allDatas) // Array(12) [2026, 2026, ... , 함수(9), 문자(10)]
+
 // --------------------------------------------------------------------------
 // [시나리오 01] 손님 체크인과 방 배정
 // --------------------------------------------------------------------------
