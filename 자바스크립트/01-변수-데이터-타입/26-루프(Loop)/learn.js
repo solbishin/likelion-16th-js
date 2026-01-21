@@ -7,27 +7,51 @@
 // * for...in : 객체 장부의 상세 정보(Key)를 확인합니다.
 // --------------------------------------------------------------------------
 
+// const draw = (n) => '화면에 ' + n + '번째 그림을 그리다.'
+
+// 화면에 [n]번 드로잉하고 싶다.
+// let count = 0
+
+// console.log(draw(++count))
+// console.log(draw(++count))
+// console.log(draw(++count))
+// console.log(draw(++count))
+// console.log(draw(++count))
+// console.log(draw(++count))
+// console.log(draw(++count))
+// console.log(draw(++count))
+// console.log(draw(++count))
+// console.log(draw(++count))
+// console.log(draw(++count))
+// console.log(draw(++count))
+// console.log(draw(++count))
+// console.log(draw(++count))
+// console.log(draw(++count))
+
+
+// 화면에 [n]번 드로잉하고 싶다
 const draw = (n) => '화면에 ' + n + '번째 그림을 그리다.'
 
 // 화면에 [n]번 드로잉하고 싶다.
 let count = 0
+const REPEAT_COUNT = 10 // n번
 
-console.log(draw(++count))
-console.log(draw(++count))
-console.log(draw(++count))
-console.log(draw(++count))
-console.log(draw(++count))
-console.log(draw(++count))
-console.log(draw(++count))
-console.log(draw(++count))
-console.log(draw(++count))
-console.log(draw(++count))
-console.log(draw(++count))
-console.log(draw(++count))
-console.log(draw(++count))
-console.log(draw(++count))
-console.log(draw(++count))
+while (count < REPEAT_COUNT) {
+  count += 1
+  // continue: [1], [2], 3, 4, [5]
+  // break: [1], [2], 3(중단)
 
+  if (count >= 3 && count <= 4) {
+    continue // 현재 코드에서 아래 코드 건너띄고 다시 while 조건 확인 이동
+  }
+
+  if (count === 9) {
+    break     // 반복문 종료
+  }
+
+  draw(count)
+  console.log(count) // 1, 2
+}
 // --------------------------------------------------------------------------
 // while 문
 // --------------------------------------------------------------------------
@@ -48,6 +72,31 @@ while (iterationCount < 5) {
   iterationCount = iterationCount + 1
   console.log(iterationCount)
 }
+
+let whileCount = 0
+let dontOver = true
+
+// let whileCount = 0
+// while (whileCount++ < 5) {
+//   // whileCount = whileCount + 1
+//   // whileCount += 1
+//   // whileCount++
+//   // console.log(++whileCount)
+//   console.log(whileCount)
+// }
+
+
+while (dontOver) {
+  // whileCount = whileCount + 1
+  // whileCount += 1
+  // WhileCount++
+  // console.log(whileCount)
+  if (whileCount > 5)
+    dontOver = true
+}
+
+console.log(whileCount)
+whileCount += 2
 
 
 // --------------------------------------------------------------------------
