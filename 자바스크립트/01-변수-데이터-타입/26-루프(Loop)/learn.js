@@ -180,7 +180,7 @@ while (forCount < TARGET_COUNT) {
 }
 
 // --------------------------------------------------------------------------
-// 배열 반복 (역순/정순)
+// 배열 반복 (정순(순방향): 오름차순/역순(역방향): 내림차순)
 // --------------------------------------------------------------------------
 const numbers = ['하나', '둘', '셋', '넷', '다섯', '여섯', '일곱']
 // 배열 순환
@@ -234,6 +234,21 @@ const numbers = ['하나', '둘', '셋', '넷', '다섯', '여섯', '일곱']
     const bookName = books[i]
     console.log(bookName)
   }
+}
+
+// 역순(내림차순) 반복 처리
+const webFrameworks = [
+  'react', //0
+  'vue.js', //1
+  'svelte', //2
+  'angular', //3
+  'solid.js' //4
+]
+
+// for문
+for (let i = webFrameworks.length - 1; i >= 0; i = i - 1) {
+  const frameworkName = webFrameworks[i]
+  console.log(i, frameworkName)
 }
 
 // --------------------------------------------------------------------------
