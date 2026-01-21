@@ -91,6 +91,45 @@ for (const key in vipGuest) {
 // - 배열의 모든 항목을 함수형 스타일로 반복 처리
 // --------------------------------------------------------------------------
 
+const list = [101, 201, 301, 401]
+console.log(list)
+
+// 배열의 forEach 메서드(함수)
+list.forEach((item, index) => {
+  console.log(item) // 101, 201, 301, 401
+  console.log(index) // 0, 1, 2, 3
+})
+
+// for 문
+for (let index = 0; index < list.length; ++index) {
+  console.log(index) // 0, 1, 2, 3
+  const item = list[index]
+  console.log(item) // 101, 201, 301, 401
+}
+
+// for ... of
+// 인덱스를 꺼낼 수 없음
+for (const item of list) {
+  console.log(item) // 101, 201, 301, 401
+}
+
+
+list.forEach((item) => {
+  console.log(item) // 101, 201, 301, 401
+})
+list.forEach((item) => console.log(item))
+
+list.forEach((item, index) => {
+  console.log(index, item) // [0, 101], [1, 201], [2, 301], [3, 401]
+})
+
+const orders = ['아이스 아메리카노', '따뜻한 라떼', '자바칩 프라푸치노']
+
+orders.forEach((menu, order) => {
+  console.log('주문하신 ' + (order + 1) + '번째 "' + menu + '" 나왔습니다!')
+})
+
+
 // 1. 기본 사용 (아이템만 사용)
 // forEach를 사용해 과일 이름 출력
 
