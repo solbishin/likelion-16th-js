@@ -102,17 +102,139 @@ whileCount += 2
 // --------------------------------------------------------------------------
 // do...while 문
 // --------------------------------------------------------------------------
+// while(조건) {
+// 블록 안에 실행할 코드
+// }
 
+// do it - 한다 (조건과 상관 없이 반드시 1회는 실행)
+// while - ~동안 (반복: 조건이 참인 동안)
 
+let i = 0
+while (i < 10) {
+  console.log(1)
+  i += 1
+}
+
+console.log(i)
+
+let j = 0
+do {
+  console.log(j)
+  j += 1
+} while (j <= 10)
+
+console.log(j)
 // --------------------------------------------------------------------------
 // for 문
 // --------------------------------------------------------------------------
+// while문 -> for문 변경
+{
+  const TARGET_COUNT = 20 // 목표 값
 
+  // while문
+  // 20번 반복 (0~19)
+  let whileCount = 0  // 반복 횟수
+  while (whileCount < TARGET_COUNT) {
+    console.log(whileCount)
+    whileCount += 1
+  }
+}
+
+// for 문
+
+for (let forCount = 0; forCount < TARGET_COUNT; forCount += 1) {
+  console.log(forCount)
+}
+
+{
+  for (let i = 0; i <= 9; i++) {
+    console.log(i)
+  }
+}
+
+
+
+// for문 -> while문 변신 단계: 0
+for (let forCount = 0; forCount < TARGET_COUNT; forCount += 1) {
+  console.log(forCount)
+}
+
+// for문 -> while문 변신 단계: 1
+let forCount = 0;
+for (forCount < TARGET_COUNT; forCount += 1) {
+  console.log(forCount)
+}
+
+// for문 -> while문 변신 단계: 2
+let forCount = 0
+for (forCount < TARGET_COUNT) {
+  console.log(forCount)
+  forCount += 1
+}
+
+// for문 -> while문 변신 단계: 3
+let forCount = 0
+while (forCount < TARGET_COUNT) {
+  console.log(forCount)
+  forCount += 1
+}
 
 // --------------------------------------------------------------------------
 // 배열 반복 (역순/정순)
 // --------------------------------------------------------------------------
+const numbers = ['하나', '둘', '셋', '넷', '다섯', '여섯', '일곱']
+// 배열 순환
+{
+  // while
+  let i = 0
+  while (i <= numbers.length) {
+    const number = numbers[i]
+    console.log(number)
+  }
+}
 
+{
+  // do... while
+  let i = 0
+  do {
+    const number = numbers[i]
+    console.log(number)
+    i++
+  } while (i <= numbers.length)
+}
+
+
+{
+  const books = ['HTML 공장', 'CSS 드레스샵', 'JavaScript 트레이닝룸']
+  // 도서 이름 출력 (반복)
+  let i = 0
+  while (i < books.length) {
+    const bookName = books[i]
+    console.log(bookName)
+    i = i + 1
+  }
+}
+
+{
+  const books = ['HTML 공장', 'CSS 드레스샵', 'JavaScript 트레이닝룸']
+  // 도서 이름 출력 (반복)
+  let i = 0
+  do {
+    const bookName = books[i]
+    console.log(bookName)
+    i = i + 1
+  } while (i < books.length)
+}
+
+{
+  const books = ['HTML 공장', 'CSS 드레스샵', 'JavaScript 트레이닝룸']
+  // 도서 이름 출력 (반복)
+
+  for (let i = 0; i < books.length; i++) {
+    const bookName = books[i]
+    console.log(bookName)
+  }
+}
 
 // --------------------------------------------------------------------------
 // for...of 문
