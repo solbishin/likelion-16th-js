@@ -279,6 +279,48 @@ console.groupCollapsed('5. 이벤트 위임의 필요성 체감')
 console.groupEnd()
 
 
+
+// --------------------------------------------------------------------------
+// 실습 
+// --------------------------------------------------------------------------
+
+// 1. 좋은 사람(Good Guy)을 모두 선택하세요.
+const goodGuys = document.querySelectorAll('[data-type="good-guy"]')
+// console.log(goodGuys)
+
+// 2. 좋은 사람(Good Guy) 모두에게 `excellent` 클래스 이름을 추가하세요.
+// goodGuys.forEach((guy) => guy.classList.add('excellent'))
+for (const guy of goodGuys) {
+  guy.classList.add('excellent')
+}
+
+// 3. 빌런(Villain)을 모두 선택하세요.
+const villains = document.querySelectorAll('[data-type="villain"]')
+// console.log(villains)
+
+// 4. 빌런 모두에게 `naughty` 클래스 이름을 추가하세요.
+// for (const villain of villains) {
+//   villain.classList.add('naughty')
+// }
+villains.forEach((villain) => villain.classList.add('naughty'))
+
+// 5. 모든 캐릭터(Character)를 선택하세요.
+const characters = document.querySelectorAll('.character')
+// console.log(characters)
+
+// 6. 모든 캐릭터에 `star-wars` 클래스 이름을 추가하세요.
+// characters.forEach((character) => character.classList.add('star-wars'))
+for (const character of characters) {
+  character.classList.add('star-wars')
+}
+
+
+
+
+
+
+
+
 // --------------------------------------------------------------------------
 // 핵심 요약!
 // --------------------------------------------------------------------------
