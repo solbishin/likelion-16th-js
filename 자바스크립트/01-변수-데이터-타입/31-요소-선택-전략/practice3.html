@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+
+<head>
+  <meta charset="UTF-8">
+  <title>전체 선택 실습</title>
+  <style>
+    .cart-item {
+      padding: 10px;
+      border: 1px solid #ddd;
+      margin-bottom: 5px;
+      cursor: pointer;
+
+      /* 선택되었을 때 적용할 스타일 */
+      &.selected {
+        background-color: #e3f2fd;
+        border-color: #2196f3;
+        font-weight: bold;
+      }
+    }
+
+    .button-group {
+      margin-top: 20px;
+    }
+  </style>
+  <script src="./practice3.js" defer></script>
+</head>
+
+<body>
+
+  <h3>🛒 장바구니</h3>
+
+  <div class="cart-list">
+    <div class="cart-item">🍎 사과</div>
+    <div class="cart-item">🍌 바나나</div>
+    <div class="cart-item">🥛 우유</div>
+  </div>
+
+  <div class="button-group">
+    <button type="button" id="btn-select-all">전체 선택</button>
+  </div>
+
+</body>
+
+</html>
