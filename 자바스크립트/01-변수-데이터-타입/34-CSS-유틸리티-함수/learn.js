@@ -7,10 +7,37 @@
 // 2. getComputedStyle()을 사용하여 요소의 계산된 스타일 값을 반환하는 로직을 작성하세요.
 console.groupCollapsed('getStyle() 함수 작성')
 
-function getStyle(element, propertyName) {
-  // 이곳에 코드를 작성하세요.
-  
+/* 추상화된 기능 구현 */
+// 첫 번째 버전
+function getStyleV1(element, propertyName) {
+  const elementStyleSnapshot = getComputedStyle(element)
+  const propertyVaue = elementStyleSnapshot.getPropertyValue(propertyName)
+  return propertyVaue
 }
+
+// 두 번째 버전
+function getStyleV2(element, propertyName) {
+  if (element === null || element.nodeType !== document.ELEMENT_NODE) {
+    console.warn('전달된 element는 문서의 요소가 아닙니다. 확인해보세요.')
+    return null
+  }
+
+  const elementStyleSnapshot = getComputedStyle(element)
+
+  if (typeof propertyName !== 'string') {
+    console.warn('전달된 propertyName은 CSS 속성명을 문자열로 전달해야 합니다.')
+    return null
+  }
+
+  const propertyVaue = elementStyleSnapshot.getPropertyValue(propertyName)
+  return propertyVaue
+}
+const strongElement = document.querySelector('.prose p:first-of-type strong')
+console.log(getStyle('strongElement', 'font-weight'))
+// console.log(getStyle('strongElement', 'font-size'))
+// console.log(getStyle('strongElement', 'color'))
+// console.log(getStyle('strongElement', 'letter-spacing'))
+// console.log(getStyle('strongElement', 'word-spacing'))
 
 console.groupEnd()
 
@@ -23,7 +50,7 @@ console.groupCollapsed('setStyle() 함수 작성')
 
 function setStyle(element, propertyName, propertyValue) {
   // 이곳에 코드를 작성하세요.
-  
+
 }
 
 console.groupEnd()
@@ -36,7 +63,7 @@ console.groupCollapsed('css() 함수 작성')
 
 function css(element, propertyName, propertyValue) {
   // 이곳에 코드를 작성하세요.
-  
+
 }
 
 console.groupEnd()
