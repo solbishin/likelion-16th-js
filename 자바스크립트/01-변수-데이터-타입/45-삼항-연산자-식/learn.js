@@ -8,7 +8,9 @@
 // 3. 결과를 변수에 담아 콘솔에 출력하세요.
 console.groupCollapsed('기본 삼항 연산자 식')
 
-// 이곳에 코드를 작성하세요.
+const score = 87
+const result = score >= 60 ? '합격' : '불합격'
+console.log(result)
 
 console.groupEnd()
 
@@ -19,8 +21,21 @@ console.groupEnd()
 // 3. if...else 문으로 썼을 때보다 코드가 얼마나 간결해졌는지 확인해 보세요.
 console.groupCollapsed('조건부 값 할당 실습')
 
-// 이곳에 코드를 작성하세요.
 
+let isLoggedIn = true
+let infoMessage = isLoggedIn ? '환영합니다!' : '로그인이 필요합니다.'
+console.log(infoMessage)
+
+isLoggedIn = !isLoggedIn // 값 반전
+
+if (isLoggedIn) {
+  infoMessage = '환영합니다.'
+}
+else {
+  infoMessage = '로그인이 필요합니다.'
+}
+
+console.log(infoMessage)
 console.groupEnd()
 
 
@@ -30,7 +45,50 @@ console.groupEnd()
 // 3. 결정된 값을 아이.장난감 속성에 할당하고 결과를 확인하세요.
 console.groupCollapsed('중첩 삼항 연산자 식 (2단계)')
 
-// 이곳에 코드를 작성하세요.
+const point = {
+  x: false,
+  z: false,
+}
+
+const resultMessage = point.z
+  ? 'z는 참!'
+  : point.x
+    ? 'x는 참!'
+    : 'x, z 모두 거짓!'
+
+console.log(resultMessage)
+
+const 아이 = {
+  성별: '여자',
+  생월: 12,
+  장난감: null
+}
+
+if (아이.성별 === '남자') {
+  if (아이.생월 === 12) {
+    아이.장난감 = '포켓몬 GO'
+  } else {
+    아이.장난감 = '메카 로봇'
+  }
+} else {
+  if (아이.생월 === 12) {
+    아이.장난감 = '레고 디즈니 프린세스'
+  } else {
+    아이.장난감 = '공주 핸드백'
+  }
+}
+
+아이.장난감 = null
+// 삼항 조건 연산자를 사용한 식으로 변경
+아이.장난감 = 아이.성별 === '남자'
+  ? (
+    아이.생월 === 12
+      ? '포켓몬 GO'
+      : '메카 로봇')
+  : (
+    아이.생월 === 12
+      ? '레고 디즈니 프린세스'
+      : '공주 핸드백')
 
 console.groupEnd()
 
