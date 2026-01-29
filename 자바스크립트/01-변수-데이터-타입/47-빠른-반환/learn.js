@@ -2,6 +2,69 @@
 // 실습: 빠른 반환 (Early Return) 패턴
 // --------------------------------------------------------------------------
 
+const mainContainer = document.getElementById('main-content')
+
+// --------------------------------------------------------------------------
+// 중첩된 코드 줄이기 
+
+// 이벤트 위임 (버블링)
+mainContainer.addEventListener('click', (e) => {
+  const target = e.target.closest('[aria-labelledby="benefit"]')
+  console.log(target)
+
+  // 문서에서 대상(요소)이 없는데?
+  // 무슨 일을 더해? 여기서 함수 실행을 중단하자. (효과적, 능률 향상)
+  if (!target) return // 빠른 반환(Early Return)
+
+  if (target) {
+    console.log('요소가 있으니 할 일을 하자. 1')
+    console.log('요소가 있으니 할 일을 하자. 2')
+    console.log('요소가 있으니 할 일을 하자. 3')
+    console.log('요소가 있으니 할 일을 하자. 4')
+    console.log('요소가 있으니 할 일을 하자. 5')
+    console.log('요소가 있으니 할 일을 하자. 6')
+  }
+
+  console.log('요소가 없어도 다른 일 할 수 있지. 1')
+  console.log('요소가 없어도 다른 일 할 수 있지. 2')
+  console.log('요소가 없어도 다른 일 할 수 있지. 3')
+  console.log('요소가 없어도 다른 일 할 수 있지. 4')
+})
+
+// --------------------------------------------------------------------------
+// else if 조건문 → if 조건문 + 빠른 반환
+
+let gift
+let score = 45
+
+if (score === 100) {
+  gift = '노트북'
+} else if (score > 75) {
+  gift = '태블릿'
+} else if (score > 50) {
+  gift = '스마트폰'
+} else {
+  gift = null
+}
+
+console.log(gift)
+
+function getGift(score) {
+  if (score === 100) return '노트북'
+  if (score > 75) return '태블릿'
+  if (score > 50) return '스마트폰'
+  return '선물 없다. 공부 더 해라!'
+}
+
+console.log(getGift(45))
+console.log(getGift(76))
+console.log(getGift(82))
+console.log(getGift(100))
+
+
+
+
+
 // [실습] 중첩된 코드 줄이기 (이벤트 처리)
 // 1. 가상의 리스트 요소(container)에 클릭 이벤트를 설정하세요.
 // 2. e.target.closest('li')를 사용하여 클릭된 대상을 찾으세요.
