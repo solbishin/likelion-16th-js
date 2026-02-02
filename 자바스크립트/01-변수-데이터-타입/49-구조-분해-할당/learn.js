@@ -105,6 +105,45 @@ console.log(printProductDA({ title: '샘표 진간장', price: 10500 }))
 console.log(printProductDAinParams({ title: '샘표 진간장', price: 10500 }))
 
 
+// 함수가 배열 타입을 매개변수로 전달받는다면?
+function printFriendsStep1(friends) {
+  const friend1 = friends.at(0)
+  const friend2 = friends.at(1)
+  const friend3 = friends.at(2)
+  const friend4 = friends.at(3)
+  console.log(friend1)
+  console.log(friend2)
+  console.log(friend3)
+  console.log(friend4)
+}
+
+function printFriendsStep2(friends) {
+  const [friend1, friend2, friend3, friend4] = friends // [친구이름1, 친구이름2, 친구이름3, 친구이름4]
+
+  console.log(friend1)
+  console.log(friend2)
+  console.log(friend3)
+  console.log(friend4)
+}
+
+function printFriendsStep3([friend1, friend2, friend3, friend4]) {
+
+  console.log(friend1)
+  console.log(friend2)
+  console.log(friend3)
+  console.log(friend4)
+}
+
+console.log(printFriendsStep1(['박한영', '김준수', '장하준', '이현종']))
+console.log(printFriendsStep2(['박한영', '김준수', '장하준', '이현종']))
+console.log(printFriendsStep3(['박한영', '김준수', '장하준', '이현종']))
+
+
+
+
+
+
+
 console.groupEnd()
 
 
