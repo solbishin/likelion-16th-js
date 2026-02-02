@@ -8,7 +8,6 @@
 // 3. 얕은 복사가 잘 되었는지 원본 배열과 비교해 보세요.
 console.groupCollapsed('배열 전개 구문 실습')
 
-
 // 배열
 const snacks = ['cookie', 'jelly', 'candy']
 
@@ -44,6 +43,7 @@ const otherSnacks = ['cracker', 'pocky']
   console.log(newSnacks)
 }
 
+
 // 배열 변환
 {
   // 유사 배열 객체
@@ -70,10 +70,13 @@ const otherSnacks = ['cracker', 'pocky']
   console.log(Array.isArray(convertedArray))
 
   // Spread Syntax
-  const convertedArrayFromSPread = [...arrayLikeObject]
-  console.log(convertedArrayFromSPread)
+  // 이터러블(Iterable): 열거 가능한 (순환 가능한, 반복 가능한)
+  // const convertedArrayFromSPread = [...arrayLikeObject]
+  // console.log(convertedArrayFromSPread)
 
 }
+
+
 console.groupEnd()
 
 
@@ -87,7 +90,131 @@ console.groupEnd()
 // 3. 전달받은 숫자 배열의 합계를 구해 연산자와 함께 출력해 보세요.
 console.groupCollapsed('나머지 매개변수 실습')
 
-// 이곳에 코드를 작성하세요
+
+// 단계 1. 여러 수를 연산하는 함수 
+{
+  function sum(
+    num1,
+    num2 = 0,
+    num3 = 0,
+    num4 = 0,
+    num5 = 0,
+    num6 = 0,
+    num7 = 0,
+    num8 = 0,
+    num9 = 0,
+  ) {
+    // 예전 방식
+    // 함수 안에서만 살아가는 (숨겨진) 객체 활용
+    // 인자들(arguments)의 집합 객체
+
+    // 새로운 방식
+    // rest parameters
+
+    const total = num1 + num2 + num3 + num4 + num5 + num6 + num7 + num8 + num9
+    return total
+  }
+
+  console.log(sum(1))
+  console.log(sum(1, 2))
+  console.log(sum(1, 2, 3))
+  console.log(sum(1, 2, 3, 4))
+  console.log(sum(11, 22, 33, 44))
+  console.log(sum(10, -9, 8, 7))
+  console.log(sum(7, 5, 3, 1, 9, 11, 27, 35, 90))
+  console.log(sum(7, 5, 3, 1, 9, 11, 27, 35, 90, 101))
+  // console.log(sum(7, 5, 3, 1, 9, 11, 27, 35, 90, 101, ...))
+}
+
+// 단계 2. 여러 수를 연산하는 함수 
+{
+  function sum(/* num1, num2, num3, ..., numN */) {
+    // 예전 방식
+    // 함수 안에서만 살아가는 (숨겨진) 객체 활용
+    // 인자들(arguments)의 집합 객체
+    console.log(arguments)
+
+    // 유사 배열 → 배열 객체로 변환
+    // - Array.prototype.slice.call(유사배열)
+    // - Array.from(유사배열)
+    // - [...유사배열]
+
+    const args = Array.from(arguments)
+
+    let total = 0
+
+    // for (const arg of args) total += arg
+    args.forEach((arg) => total += arg)
+
+    return total
+  }
+
+  console.log(sum(1))
+  console.log(sum(1, 2))
+  console.log(sum(1, 2, 3))
+  console.log(sum(1, 2, 3, 4))
+  console.log(sum(11, 22, 33, 44))
+  console.log(sum(10, -9, 8, 7))
+  console.log(sum(7, 5, 3, 1, 9, 11, 27, 35, 90))
+  console.log(sum(7, 5, 3, 1, 9, 11, 27, 35, 90, 101))
+
+
+  // 전달된 수의 평균 값을 연산하는 함수
+  {
+    function average() {
+      // arguments는 객체
+      const numbers = Array.from(arguments)
+      const count = numbers.length
+      console.log(Array.isArray(numbers))
+
+      let total = 0
+      numbers.forEach(n => total += n)
+      const value = total / count
+      return value
+    }
+
+    console.log(average(72, 9, 81, 23, 10))
+    console.log(average(100, 90, 82, 76, 100))
+  }
+}
+
+// 단계 3. 여러 수를 연산하는 함수 
+{
+  function sum(...restNumbers) {
+    // 오늘날 자주 사용하는 방식
+    // 나머지 매개변수 : 함수 외부에서 전달된 인자들의 집합 (실제 배열)
+    // console.log(Array.isArray(restNumbers))
+
+    let total = 0
+
+    // 반복 처리
+
+    // for 문 활용
+    // for (let i = 0; i < restNumbers.length; ++i) {
+    //   const number = restNumbers[i]
+    //   total += number
+    // }
+
+    // for...of 문 활용
+    // for (const number of restNumbers) {
+    //   total += number
+    // }
+
+    // forEach() 메서드 활용
+    restNumbers.forEach((n) => total += n)
+
+    return total
+  }
+
+  console.log(sum(1))
+  console.log(sum(1, 2))
+  console.log(sum(1, 2, 3))
+  console.log(sum(1, 2, 3, 4))
+  console.log(sum(11, 22, 33, 44))
+  console.log(sum(10, -9, 8, 7))
+  console.log(sum(7, 5, 3, 1, 9, 11, 27, 35, 90))
+  console.log(sum(7, 5, 3, 1, 9, 11, 27, 35, 90, 101))
+}
 
 console.groupEnd()
 
@@ -102,7 +229,16 @@ console.groupEnd()
 // 3. 구조 분해 할당과 Rest(...others)를 사용해 theme만 따로 빼고 나머지만 모은 객체를 출력해 보세요.
 console.groupCollapsed('객체 전개 및 나머지 실습')
 
-// 이곳에 코드를 작성하세요
+const baseConfig = { theme: 'dark', sound: true, volumn: 50 }
+const newConfig = { ...baseConfig, volumn: 80 }
+
+console.log(baseConfig)
+console.log(newConfig)
+
+const { theme, ...withoutThemeConfig } = newConfig // { theme, sound, volumn }
+
+console.log(theme)
+console.log(withoutThemeConfig)
 
 console.groupEnd()
 
