@@ -8,10 +8,54 @@
 // 3. 초기값을 0으로 설정하는 것을 잊지 마세요!
 console.groupCollapsed('1. 합계 구하기 실습')
 
-// 이곳에 코드를 작성하세요
+const prices = [12_000, 45_000, 3200, 9900]
+
+// 배열의 요소들을 모두 합한 값 (최종 결과 값 = 누산된 값)
+// 총합 = 0 + 12000 + 45000 + 3200 + 9900
+console.log(prices)
+
+// for문 사용 예시
+{
+  let initialValue = 0
+  let accumulator = initialValue
+  for (let i = 0, l = prices.length; i < l; i++) {
+    const price = prices.at(i)
+    accumulator += price
+  }
+
+  console.log(accumulator)
+}
+
+// for...of문 메서드 사용 예시
+{
+  let initialValue = 0
+  let accumulator = initialValue
+  for (const price of prices) {
+    accumulator += price
+  }
+
+  console.log(accumulator)
+}
+
+// forEach() 메서드 사용 예시
+{
+  let initialValue = 0
+  let accumulator = initialValue
+  prices.forEach((price) => (accumulator += price))
+
+  console.log(accumulator)
+}
+
+// reduce() 메서드 사용 예시
+{
+  // 최종적으로 누산된 값을 구하는 함수(배열의 메서드)
+  const totalPrice = prices.reduce((acc, price) => (acc += price), 0)
+
+  console.log(totalPrice)
+  console.log(`${totalPrice.toLocaleString()}원`)
+}
 
 console.groupEnd()
-
 
 // --------------------------------------------------------------------------
 // 실습: 배열 -> 객체 (데이터 그룹화/카운팅)
@@ -23,10 +67,81 @@ console.groupEnd()
 // 3. 논리 연산자(acc[cur] || 0)를 활용해 코드를 단축해 보세요.
 console.groupCollapsed('2. 개수 세기 실습')
 
-// 이곳에 코드를 작성하세요
+{
+  const fruits = [
+    '바나나',
+    '애플',
+    '오렌지',
+    '애플',
+    '바나나',
+    '워터 멜론',
+    '바나나',
+    '오렌지',
+    '워터 멜론',
+    '오렌지',
+    '참외',
+    '애플',
+    '바나나',
+    '워터 멜론',
+    '참외',
+  ]
+
+  // for문 사용
+  {
+    const result = {}
+
+    for (let i = 0; i < fruits.length; i += 1) {
+      const fruitName = fruits.at(i)
+
+      // 결과(result) 객체에 해당 과일 이름이 속성으로 포함되어 있다.
+      console.log(fruitName, fruitName in result)
+
+      if (fruitName in result) {
+        // console.log(`result 객체 안에 '${fruitName}'과 동일한 키가 있어요.`)
+        result[fruitName] += 1
+      } else {
+        // console.log(`result 객체 안에 '${fruitName}'과 동일한 키가 없어요.`)
+        result[fruitName] = 1
+      }
+    }
+
+    console.log(result)
+  }
+
+  // reduce() 메서드 사용
+  {
+    // 단계 1. if...else 문
+    let result = fruits.reduce((fruitsCount, fruitName) => {
+      if (fruitName in fruitsCount) {
+        fruitsCount[fruitName] += 1
+      } else {
+        fruitsCount[fruitName] = 1
+      }
+
+      return fruitsCount
+    }, {})
+
+    // 단계 2. 삼항 연산자 식
+    result = fruits.reduce((fruitsCount, fruitName) => {
+      fruitsCount[fruitName] = fruitName in fruitsCount ? fruitsCount[fruitName] + 1 : 1
+      return fruitsCount
+    }, {})
+
+    console.log(result)
+  }
+
+  /*
+    누산된 결과: {
+      '바나나': 3,
+      '애플': 2,
+      '오렌지': 2,
+      '워터 멜론': 2,
+      '참외': 1,
+    }
+  */
+}
 
 console.groupEnd()
-
 
 // --------------------------------------------------------------------------
 // 실습: 배열 평탄화 (Flattening)
@@ -41,7 +156,6 @@ console.groupCollapsed('3. 배열 평탄화 실습')
 // 이곳에 코드를 작성하세요
 
 console.groupEnd()
-
 
 // --------------------------------------------------------------------------
 // 핵심 요약!
