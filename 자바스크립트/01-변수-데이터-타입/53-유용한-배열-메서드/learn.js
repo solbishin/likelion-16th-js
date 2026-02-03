@@ -96,6 +96,7 @@ console.group('2. find 실습')
 
 // 복잡한 배열에서 find() 메서드 사용
 {
+  // 사용자 정보가 포함된 배열 users
   const users = [
     { id: 'users-kcls', name: '하영', hobby: '서핑', email: 'hay@naver.com', location: '서울' },
     { id: 'users-ekx1', name: '준수', hobby: '라이딩', email: 'jun@daum.net', location: '이천' },
@@ -107,7 +108,7 @@ console.group('2. find 실습')
 
   // [이름 or 취미 or 이메일 or 위치]으로 찾을 것인지?
   // 이메일이 'min@kakako.com' 또는 'min'을 포함한 사용자를 찾아라.
-  let foundUser = null
+  let foundUser = null // 개발자가 의도를 가지고 추후 값이 변경될 수 있도록 명시적 초기화
 
   // 로직 (재사용 고려 -> 기능 작성 -> 함수 선언)
   // const searchTerm = '러닝'
@@ -118,9 +119,18 @@ console.group('2. find 실습')
     return userList.find((user) => user[category].includes(search))
   }
 
-  foundUser = findUser(users, { search: '라이딩', category: 'hobby' })
+  // foundUser = users.find((user) => user[category].includes(search)) 
+  // 이 부분이  user['카테고리 속성 이름'].includes('사용자 검색어') 이렇게 들어가는건가요?
+
+  foundUser = findUser(users, { category: 'hobby', search: '라이딩' })
+  foundUser = findUser(users, { search: '민'/* , category: 'name' */ })
+
 
   if (foundUser) {
+    // 사용자 검색어 및 카테고리에 의해 선택된 사용자 정보 foundUser
+    // 예시) { id: 'users-ocls', name: '민주', hobby: '러닝', email: 'min@kakao.com', location: '서울' },
+
+    // const { name, email, location } = foundUser 선생님 이부분이 구조분해 할당이 적용된걸까요?
     const { name, email, location } = foundUser
     console.log(name)
     console.log(email)
@@ -128,8 +138,19 @@ console.group('2. find 실습')
   } else {
     console.log('users 배열 안에는 찾는 사용자가 없습니다.')
   }
-}
 
+  {
+    function findUser(userList, search, category = 'name') {
+      return userList.find((user) =>
+        user[category] ? user[category].includes(search) : false
+      )
+    }
+
+    console.log(findUser(users, '준수'))
+    console.log(findUser(users, 'hae', 'email'))
+    console.log(findUser(users, '스위밍', 'hobby'))
+  }
+}
 
 console.groupEnd()
 
@@ -142,7 +163,180 @@ console.groupEnd()
 // 2. JSON.stringify(result, null, 2)를 사용하여 화면에 예쁘게 출력해 보세요.
 console.groupCollapsed('3. filter 실습')
 
-// 이곳에 코드를 작성하세요
+// 간단한 데이터 필터링
+{
+  const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 33, 24, 89, 903]
+
+  // 3의 배수만 걸러내자. (3으로 나눠서 나머지가 0인 수)
+  const multiplesOf3 = numbers.filter((number) => number % 3 === 0)
+  console.log(multiplesOf3)
+
+  // 2로 나눠 나머지가 0인 수만 걸러내자. (짝수만)
+  const filteredEven = numbers.filter((n) => n % 2 === 0)
+  console.log(filteredEven)
+
+  // 홀수만 걸러내자.
+  const filteredOdd = numbers.filter(n => n % 2 > 0)
+  console.log(filteredOdd)
+}
+
+
+// 복잡한 데이터 필터링
+{
+  const users = [
+    { id: 'USER-KCLS', name: '김하영', hobby: ['서핑', '요가'], email: 'hayoung@naver.com', location: '서울', age: 27 },
+    { id: 'USER-EKX1', name: '박준수', hobby: ['라이딩', '등산'], email: 'junsu@daum.net', location: '이천', age: 32 },
+    { id: 'USER-CISK', name: '이상준', hobby: ['서핑', '독서'], email: 'sangjun@gmail.com', location: '원주', age: 29 },
+    { id: 'USER-OCLS', name: '최민주', hobby: ['러닝', '요가'], email: 'minju@kakao.com', location: '서울', age: 25 },
+    { id: 'USER-EIKA', name: '정해영', hobby: ['라이딩', '수영'], email: 'haeyoung@naver.com', location: '부산', age: 31 },
+    { id: 'USER-2LOW', name: '김민식', hobby: ['서핑', '클라이밍'], email: 'minsik@naver.com', location: '대전', age: 28 },
+    { id: 'USER-9KMZ', name: '박지수', hobby: ['요가', '명상'], email: 'jisoo@gmail.com', location: '서울', age: 26 },
+    { id: 'USER-7PQR', name: '이현우', hobby: ['등산', '캠핑'], email: 'hyunwoo@daum.net', location: '부산', age: 33 },
+    { id: 'USER-3ABC', name: '최예지', hobby: ['서핑', '사진촬영'], email: 'jimin@naver.com', location: '제주', age: 30 },
+    { id: 'USER-5XYZ', name: '정소희', hobby: ['러닝', '자전거'], email: 'sohee@kakao.com', location: '서울', age: 24 },
+    { id: 'USER-8DEF', name: '김태호', hobby: ['요가', '명상'], email: 'taeho@gmail.com', location: '대구', age: 35 },
+    { id: 'USER-4GHI', name: '박민지', hobby: ['라이딩', '수영'], email: 'minji@naver.com', location: '인천', age: 27 },
+    { id: 'USER-1JKL', name: '이준호', hobby: ['등산', '낚시'], email: 'junho@daum.net', location: '서울', age: 31 },
+    { id: 'USER-6MNO', name: '최세진', hobby: ['서핑', '스노우보드'], email: 'sejin@kakao.com', location: '부산', age: 29 },
+    { id: 'USER-0PQR', name: '정유진', hobby: ['요가', '필라테스'], email: 'yujin@gmail.com', location: '광주', age: 28 },
+    { id: 'USER-2STU', name: '김민수', hobby: ['러닝', '축구'], email: 'minsu@naver.com', location: '서울', age: 26 },
+    { id: 'USER-5VWX', name: '박지훈', hobby: ['라이딩', '테니스'], email: 'jihoon@daum.net', location: '대전', age: 30 },
+    { id: 'USER-7YZA', name: '이수진', hobby: ['등산', '요리'], email: 'soojin@kakao.com', location: '부산', age: 32 },
+    { id: 'USER-9BCD', name: '최동현', hobby: ['서핑', '드론'], email: 'donghyun@gmail.com', location: '제주', age: 34 },
+    { id: 'USER-4EFG', name: '정예지', hobby: ['요가', '그림'], email: 'yeji@naver.com', location: '서울', age: 25 }
+  ]
+
+  console.log(users.length)
+
+  let foundPeople = null
+
+  // 성이 '?'인 사람들만 걸러보세요.
+  const firstName = '이'
+  // foundPeople = users.filter((user) => user.name[0] === firstName)
+  foundPeople = users.filter(({ name }) => name.charAt(0) === firstName)
+  console.log(foundPeople.length)
+  console.log(foundPeople)
+
+  // 이름이 '??'인 사람들을 걸러보세요.
+  const lastName = '예지'
+  // 구조 분해 할당 사용하지 않을 경우
+  foundPeople = users.filter((user) => user.name.slice(1) === lastName)
+  // 구조 분해 할당 사용할 경우
+  // foundPeople = users.filter(({ name }) => name.slice(1) === lastName)
+  console.log(foundPeople.length)
+  console.log(foundPeople)
+
+  // 지역이 '??'인 사람들만 걸러보세요.
+  const region = '제주'
+  // 구조 분해 할당 사용하지 않을 경우
+  // foundPeople = users.filter((user) => user.location === region)
+  // 구조 분해 할당 사용할 경우
+  foundPeople = users.filter(({ location }) => location === region)
+  console.log(foundPeople.length)
+  console.log(foundPeople)
+
+  // NAVER 이메일을 사용하는 사람들만 걸러보세요.
+  const emailService = 'NAVER'
+
+  // 함수 값을 화살표 함수에서 명시적으로 반환할 경우
+  foundPeople = users.filter((user) => {
+    return user.email.includes(emailService.toLowerCase())
+  })
+
+  // 함수 값을 화살표 함수에서 암묵적으로 반환할 경우
+  foundPeople = users.filter((user) => user.email.includes(emailService.toLowerCase()))
+
+  // 구조 분해 할당 문법을 사용해 user 객체의 email 속성을 매개변수로 빼낸 경우
+  foundPeople = users.filter(({ email }) => email.includes(emailService.toLowerCase()))
+
+  console.log(foundPeople.length)
+  console.log(foundPeople)
+
+  // 나이대가 20대인 사람들만 걸러보세요.
+  // 나이(age)가 20대인 조건 (20-29)
+  // age > 19 && age < 30
+
+  // 구조 분해 할당을 사용하지 않을 경우
+  foundPeople = users.filter((user) => user.age > 19 && user.age < 30)
+
+  // 구조 분해 할당을 사용할 경우
+  foundPeople = users.filter(({ age }) => age > 19 && age < 30)
+
+  console.log(foundPeople.length)
+  console.log(foundPeople)
+
+  // 취미가 '??'인 사람들만 걸러보세요.
+  const hobbyName = '서핑'
+
+  // 구조 분해 할당을 사용하지 않을 경우
+  foundPeople = users.filter((user) => user.hobby.includes(hobbyName))
+
+  // 구조 분해 할당을 사용할 경우
+  foundPeople = users.filter(({ hobby }) => hobby.includes(hobbyName))
+
+  console.log(foundPeople.length)
+  console.log(foundPeople)
+
+}
+
+// 간단한 데이터 가공
+{
+  // 숫자를 나타내는 단어로 구성된 배열
+  const words = '하나 둘 셋 넷 다섯 여섯 일곱 여덟 아홉 열'.split(' ')
+  console.log(words)
+
+  // 가공된 결과: [{ 인덱스: 숫자를_표현한_단어 }, { 인덱스: 숫자를_표현한_단어 }, ...]
+  const indexOfWords = words.map((word, index) => {
+    // 배열을 순환해 각 요소 마다 가공한 결과를 내보낸다.
+    // 가공한 요소 : { 인덱스: 숫자를_표현한_단어 }
+    // 예시) { 0: '하나' }, { 1: '둘' }
+    const mappedWord = { [index]: word }
+    return mappedWord
+  })
+
+  // 가공된 각 요소를 포함하는 새로운 배열 반환
+  // 예상된 결과: [{ 0: '하나' }, { 1: '둘' }, ...]
+  console.log(indexOfWords)
+
+
+  // 콜백 함수의 순서? 어떻게 지정되나?
+  // map() 메서드 흉내내기를 통해 
+  // 콜백 함수의 순서 지정하는 방법 학습
+  // JavaScript 고차 함수, 일급 객체, 일급 함수를 지원
+  // 함수는 값이고, 변수에 할당 가능하며, 
+  // 함수에 인자로 전달 및 반환 값으로 내보낼 수 있다.
+  function customMap(array, callbackFn) {
+    const mappedArray = []
+
+    // for 문
+    for (let index = 0, l = array.length; index < l; ++index) {
+      const item = array.at(index)
+      // const mappedItem = callbackFn(index, item, array)
+      const mappedItem = callbackFn(item, index, array)
+      mappedArray.push(mappedItem)
+    }
+
+    // map() 함수 흉내내기
+    // 반환값 가공된 요소들로 구성된 새로운 배열 반환
+    return mappedArray
+  }
+
+  // const customResult = customMap(words, (index, item) => {
+  const customResult = customMap(words, (item, index) => {
+    // 콜백 함수에서 가공된 각 요소의 결과를 반환
+    const mappedWord = { [index]: item }
+    return mappedWord
+  })
+
+  console.log(customResult)
+
+}
+
+
+// 복잡한 데이터 가공
+{
+  // 
+}
 
 console.groupEnd()
 
