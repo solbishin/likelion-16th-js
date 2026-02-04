@@ -2,85 +2,83 @@
 // 실습: 요소 생성 및 추가 (createElement, appendChild, insertBefore)
 // --------------------------------------------------------------------------
 
-const orderedList = document.createElement('ol')
-console.log(orderedList)
+{
+  // 요소(Element) 생성
+  const orderedList = document.createElement('ol')
 
-// 생성된 요소에 속성 설정
-// - class 속성(className, classList
-orderedList.className = 'demo-ol'
-orderedList.className += ' ' + 'song-rank'
-orderedList.classList.add('list', 'dictionary')
-orderedList.className += ' update-ol'
-console.log(orderedList.className) // LEGACY
-console.log(orderedList.classList.value) // MODERN
+  // 생성된 요소에 속성 설정
+  // - class 속성 (className, classList)
+  orderedList.className = 'demo-ol'
+  orderedList.className += ' ' + 'song-rank'
+  orderedList.classList.add('list', 'dictionary')
+  // - setAttributre()
+  orderedList.setAttribute('aria-label', '가요 톱10')
+  // - dataset
+  orderedList.dataset.message = '2026년 2월 가요 톱10'
+  // - textContent 속성
+  orderedList.textContent = '<li>이렇게 넣으면 표준 위반!</li>'
+  // - innerHTML 속성
+  orderedList.innerHTML = `
+    <li>K팝 노래 1</li>
+    <li>K팝 노래 2</li>
+    <li>K팝 노래 3</li>
+  `
 
-// - data-* 속성
-// - setAttribute()
-orderedList.setAttribute('aria-label', '가요 톱10')
+  // console.log(orderedList.className) // LEGACY
+  // console.log(orderedList.classList.value) // MODERN
+  // console.log(orderedList.outerHTML) // <ol></ol>
 
-// - dataset
-orderedList.dataset.message = '2026년 2월 가요 톱10'
+  // 부모 요소를 찾아, 부모의 마지막 자식 요소로 추가
+  // 부모요소.appendChild(자식요소)
+  const container = document.querySelector('.container')
 
-// - textContent 속성
-orderedList.textContent = '<li>이렇게 넣으면 표준 위반!</li>'
+  container.addEventListener('click', (e) => {
+    const parentElement = e.currentTarget
+    const appendButton = e.target.closest('.append-button')
+    const addButton = e.target.closest('.add-button')
 
-// - innerHTML 속성
-orderedList.innerHTML = `
-  <li>K팝 노래1</li>
-  <li>K팝 노래2</li>
-  <li>K팝 노래3</li>
-`
-console.log(orderedList.outerHTML)
+    if (addButton && orderedList.parentElement) {
+      // console.log(orderedList) // 메모리 상에 기억된 요소
+      // console.log(orderedList.parentElement) // null 아직 문서에 삽입되기 전
+      // 새로운 <li></li> 요소 생성
+      const li = document.createElement('li')
+      const nextNumber = orderedList.children.length + 1
+      li.textContent = `K팝 노래 ${nextNumber}`
+      orderedList.appendChild(li)
+    }
 
-// 부모 요소를 찾아, 부모의 마지막 자식 요소로 추가
-// 부모요소.appendChild(자식요소)
-const container = document.querySelector('.container')
+    if (appendButton) {
+      // 부모요소의 마지막 자식 요소로 생성된 요소 추가
+      parentElement.appendChild(orderedList)
 
-container.addEventListener('click', (e) => {
-  const parentElement = e.currentTarget
-  const appendButton = e.target.closest('.append-button')
-  const addButton = e.target.closest('.add-button')
+      // 버튼 비활성화
+      appendButton.disabled = true
+      appendButton.style.cssText = 'cursor: not-allowed'
+    }
+  })
 
-  if (addButton && orderedList.parentElement) {
-    // console.log(orderedList) // 메모리 상에 기억된 요소
-    // console.log(orderedList.parentElement) // null 아직 문서에 삽입되기 전
-    // 새로운 <li></li> 요소 생성
-    const li = document.createElement('li')
-    const nextNumber = orderedList.children.length + 1
-    li.textContent = `K팝 노래 ${nextNumber}`
-    orderedList.appendChild(li)
-  }
+  const appendButton = container.querySelector('.append-button')
+  // 사용자 버튼 클릭 시뮬레이션
+  appendButton.click()
 
-  if (appendButton) {
-    // 부모요소의 마지막 자식 요소로 생성된 요소 추가
-    parentElement.appendChild(orderedList)
+  // 부모요소.insertBefore(삽입할 요소, 삽입할 위치의 요소)
+  // 'K팝 노래0' 리스트 아이템 요소 삽입
 
-    // 버튼 비활성화
-    appendButton.disabled = true
-    appendButton.style.cssText = 'cursor: not-allowed'
-  }
+  // 삽입할 요소
+  const newListItem = document.createElement('li')
+  newListItem.textContent = 'K팝 노래 0'
+  // console.log(newListItem.outerHTML)
 
-})
+  // 부모 요소와 삽입할 위치의 요소
+  const list = container.querySelector('ol')
+  const targetListItem = list.firstElementChild
+  // console.log(targetListItem)
 
-const appendButton = container.querySelector('.append-button')
-// 사용자 버튼 클릭 사용하면
-appendButton.click()
+  // 부모요소.insertBefore(삽입할 요소, 삽입할 위치의 요소)
+  list.insertBefore(newListItem, targetListItem)
+}
 
-
-// 부모요소.innerBefore(삽입요소, 삽입위치요소)
-// 'K팝 노래' 리스트 아이템 요소 삽입
-const newListItem = document.createElement('li')
-newListItem.textContent = 'K팝 노래 0'
-// console.log(newListItem.outerHTML)
-
-// 부모 요소와 삽입할 위치의 요소
-const list = container.querySelector('ol')
-const targetListItem = list.firstElementChild
-// console.log(targetListItem)
-
-// 부모요소.innerBefore(삽입할 요소, 삽입할 위치의 요소)
-list.insertBefore(newListItem, targetListItem)
-
+// --------------------------------------------------------------------------
 
 // [실습 1] 할 일 추가
 // 1. form의 submit 이벤트를 차단하세요 (e.preventDefault())
@@ -88,10 +86,36 @@ list.insertBefore(newListItem, targetListItem)
 // 3. .todo-list의 마지막 자식으로 추가하세요.
 console.groupCollapsed('1. appendChild 실습 (Todo)')
 
-// 이곳에 코드를 작성하세요
+{
+  const practice1 = document.getElementById('practice1')
+  const list = practice1.querySelector('.todo-list')
+
+  practice1.addEventListener('submit', (e) => {
+    const form = e.target.closest('.todo-form')
+    if (!form) return
+
+    // 브라우저의 기본 작동인 폼 action으로 입력 데이터 전송을 방지
+    e.preventDefault()
+
+    const input = form.querySelector('.todo-input')
+    const userInput = input.value.trim()
+
+    const newTodo = document.createElement('li')
+    newTodo.textContent = userInput
+    // console.log(newTodo.outerHTML)
+    list.appendChild(newTodo)
+
+    // 입력 필드의 값 비우기
+    // input.value = ''
+
+    // 폼 초기화
+    form.reset()
+
+  })
+
+}
 
 console.groupEnd()
-
 
 // --------------------------------------------------------------------------
 // [실습 2] 다른 요소 앞에 추가
@@ -104,7 +128,6 @@ console.groupCollapsed('2. insertBefore 실습 (Recipe)')
 
 console.groupEnd()
 
-
 // --------------------------------------------------------------------------
 // [실습 3] 다른 목록으로 이동
 // 1. 버튼을 클릭하면 "망고" 요소를 찾으세요.
@@ -114,7 +137,6 @@ console.groupCollapsed('3. 요소 이동 실습 (Fruits)')
 // 이곳에 코드를 작성하세요
 
 console.groupEnd()
-
 
 // --------------------------------------------------------------------------
 // 핵심 요약!
