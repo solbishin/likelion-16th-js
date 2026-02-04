@@ -2,6 +2,86 @@
 // 실습: 요소 생성 및 추가 (createElement, appendChild, insertBefore)
 // --------------------------------------------------------------------------
 
+const orderedList = document.createElement('ol')
+console.log(orderedList)
+
+// 생성된 요소에 속성 설정
+// - class 속성(className, classList
+orderedList.className = 'demo-ol'
+orderedList.className += ' ' + 'song-rank'
+orderedList.classList.add('list', 'dictionary')
+orderedList.className += ' update-ol'
+console.log(orderedList.className) // LEGACY
+console.log(orderedList.classList.value) // MODERN
+
+// - data-* 속성
+// - setAttribute()
+orderedList.setAttribute('aria-label', '가요 톱10')
+
+// - dataset
+orderedList.dataset.message = '2026년 2월 가요 톱10'
+
+// - textContent 속성
+orderedList.textContent = '<li>이렇게 넣으면 표준 위반!</li>'
+
+// - innerHTML 속성
+orderedList.innerHTML = `
+  <li>K팝 노래1</li>
+  <li>K팝 노래2</li>
+  <li>K팝 노래3</li>
+`
+console.log(orderedList.outerHTML)
+
+// 부모 요소를 찾아, 부모의 마지막 자식 요소로 추가
+// 부모요소.appendChild(자식요소)
+const container = document.querySelector('.container')
+
+container.addEventListener('click', (e) => {
+  const parentElement = e.currentTarget
+  const appendButton = e.target.closest('.append-button')
+  const addButton = e.target.closest('.add-button')
+
+  if (addButton && orderedList.parentElement) {
+    // console.log(orderedList) // 메모리 상에 기억된 요소
+    // console.log(orderedList.parentElement) // null 아직 문서에 삽입되기 전
+    // 새로운 <li></li> 요소 생성
+    const li = document.createElement('li')
+    const nextNumber = orderedList.children.length + 1
+    li.textContent = `K팝 노래 ${nextNumber}`
+    orderedList.appendChild(li)
+  }
+
+  if (appendButton) {
+    // 부모요소의 마지막 자식 요소로 생성된 요소 추가
+    parentElement.appendChild(orderedList)
+
+    // 버튼 비활성화
+    appendButton.disabled = true
+    appendButton.style.cssText = 'cursor: not-allowed'
+  }
+
+})
+
+const appendButton = container.querySelector('.append-button')
+// 사용자 버튼 클릭 사용하면
+appendButton.click()
+
+
+// 부모요소.innerBefore(삽입요소, 삽입위치요소)
+// 'K팝 노래' 리스트 아이템 요소 삽입
+const newListItem = document.createElement('li')
+newListItem.textContent = 'K팝 노래 0'
+// console.log(newListItem.outerHTML)
+
+// 부모 요소와 삽입할 위치의 요소
+const list = container.querySelector('ol')
+const targetListItem = list.firstElementChild
+// console.log(targetListItem)
+
+// 부모요소.innerBefore(삽입할 요소, 삽입할 위치의 요소)
+list.insertBefore(newListItem, targetListItem)
+
+
 // [실습 1] 할 일 추가
 // 1. form의 submit 이벤트를 차단하세요 (e.preventDefault())
 // 2. input의 값을 읽어와서 새로운 <li> 요소를 만드세요.
