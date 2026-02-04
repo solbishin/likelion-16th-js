@@ -30,7 +30,42 @@ const headlines = [
   '공공장소에서는 이어폰 사용하기', '비상연락망은 가족끼리 공유'
 ]
 
-// 이곳에 코드를 작성하세요
+const main = document.getElementById('main-content')
+const heading = main.querySelector('h1')
+
+{
+  // 읽기
+  console.log(heading.textContent)
+
+  // 쓰기
+  heading.textContent = '<em>글자가 기울어질까요?</em>'
+  console.log(heading.textContent)
+}
+
+// innerHTML 속성
+// 읽기
+console.log(heading.innerHTML)
+// 쓰기
+setTimeout(() => {
+  heading.innerHTML = `
+  <em>글자가 기울어질까요?</em>
+  HTML 태그로 해석되므로 반영될걸요?
+  `
+  console.log('내부 HTML', heading.innerHTML)
+
+  // outerHTML 속성
+  console.log('외부 HTML', heading.outerHTML)
+}, 2000)
+
+// outerHTML 속성 쓰기
+setTimeout(() => {
+  heading.outerHTML = `
+  <strong role="heading" aria-level="1">
+    ${heading.innerHTML}
+  </strong>
+  `
+}, 4000)
+
 
 console.groupEnd()
 
