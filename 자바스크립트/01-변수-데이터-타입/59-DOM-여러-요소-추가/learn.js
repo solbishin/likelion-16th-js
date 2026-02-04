@@ -16,24 +16,118 @@ const users = [
   { name: '서지수', age: 23, job: '학생' },
 ]
 
-  // 즉시 실행되는 함수 표현식 (IIFE)
-  // Immediate Invoked Function Expression
+{
+  // 제어할 요소들
+  const container = document.querySelector('.container')
+  const button = container.firstElementChild
+  const list = container.lastElementChild
 
-  // (함수값)   : 함수 실행 안함
-  // (함수값()) : 함수 실행 함
-  // (함수값)() : 함수 실행 함
-  ; (function () {
-    console.log('연습 1')
-  }) // ()
+    // 성능 저하를 유발하는 사례
+    ; (() => {
 
-  ; (function () {
-    console.log('연습 2')
-  })()
+      button.addEventListener('click', () => {
+        users.forEach(({ job, name }) => {
+          const item = document.createElement('li')
+          item.textContent = `${job} ${name}`
+          // 성능 저하를 유발하는 렌더링 (반복하는 동안 계속)
+          list.append(item)
+        })
+      })
 
-// example1()
-// example2()
+    }) //()
 
+    // 성능 최적화 사례 (요소 생성 및 삽입)
+    ; (() => {
 
+      button.addEventListener(
+        'click',
+        () => {
+          const items = users.map(({ job, name }) => {
+            const item = document.createElement('li')
+            item.textContent = `${job} ${name}`
+            return item
+          })
+
+          // list.append(...items)
+          // list.append(item0, item1, item2, ..., item9)
+          list.append(...items)
+        },
+        { once: true },
+      )
+
+    }) //()
+
+    // 성능 최적화 사례 (HTML 문자열 DOM에 삽입)
+    ; (() => {
+
+      // list의 개별 요소에 이벤트 리스너 추가
+      // Array.from(list.children).forEach((child) => {
+      //   child.addEventListener('click', (e) => {
+      //     const item = e.currentTarget
+      //     const itemContent = item.textContent
+      //     alert(itemContent)
+      //   })
+      // })
+
+      // 이벤트 위임의 위대함(?) 👏
+      list.addEventListener('click', (e) => {
+        const listItem = e.target.closest('li')
+        if (!listItem) return
+        alert(listItem.textContent)
+      })
+
+      button.addEventListener(
+        'click',
+        () => {
+          // ❌ 나쁜 코드 (성능 저하 )
+          // users.forEach(({ job, name }) => {
+          //   // HTML 코드 생성
+          //   const htmlCode = `<li>${job} ${name}</li>`
+          //   list.innerHTML += htmlCode // 그려라! x 10
+          // })
+
+          // ✅ 좋은 코드 (성능 저하 없음)
+          // const liItemsHTMLCode = users
+          // 메서드 체이닝
+          // .map(({ job, name }) => `<li>${job} ${name}</li>`)
+          // .join('')
+
+          const liItemsHTMLCode = users
+            .reduce((htmlCode, { job, name }) => {
+              htmlCode += `<li>${job} ${name}</li>`
+              return htmlCode
+            }, '')
+
+          // console.log(liItemsHTMLCode)
+          list.innerHTML += liItemsHTMLCode // 그려라! x 1
+        }
+      )
+
+    }) // ()
+
+    // 효과적으로 여러 요소(들)을 DOM에 삽입하는 방법
+    // 문서 조각(DocumentFragment) 요소를 사용
+    ; (() => {
+      // 문서 조각(가상 DOM 컨테이너) 객체 생성
+      // 실제 문서가 아닌, 가상의 DOM 컨테이너(메모리) 상에 상주하는 데이터 활용 
+      const fragment = document.createDocumentFragment()
+      fragment.appendChild(document.createElement('ul'))
+      // <document-fragment><ul>...</ul></document-fragment>
+      // console.log(fragment) 
+
+      button.addEventListener('click', () => {
+        users.forEach(({ job, name }) => {
+          const item = document.createElement('li')
+          item.textContent = `${job} ${name}`
+          // fragment 객체에 삽입 (성능 저하? 없어요!!!)
+          fragment.firstElementChild.appendChild(item)
+        })
+
+        // console.log(fragment.firstElementChild.outerHTML)
+        list.innerHTML += fragment.firstElementChild.innerHTML
+      })
+    })()
+}
 
 
 const todaysMenu = [
