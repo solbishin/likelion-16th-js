@@ -66,6 +66,25 @@ setTimeout(() => {
   `
 }, 4000)
 
+const practice1 = document.getElementById('practice1')
+const display = practice1.querySelector('.headline-display')
+
+// 이벤트 위임(Event Delegation)
+practice1.addEventListener('click', (e) => {
+  // 실제 이벤트가 발생한 대상을 포함해 가장 가까운 부모까지
+  // 거슬러 올라가 요소를 찾고, 요소가 없을 경우 Null 변형
+  const button = e.target.closest('.btn-change')
+  // 빠른 반환(조기 리턴: Early Return)
+  if (!button) return
+
+  // 랜덤 '오늘의 생활 수칙' 꺼내기
+  const randomIndex = Math.floor(Math.random() * headlines.length)
+  const randomContent = headlines.at(randomIndex)
+
+  // DOM 요소의 텍스트 콘텐츠 조작(update)
+  display.textContent = randomContent
+})
+
 
 console.groupEnd()
 
@@ -76,7 +95,36 @@ console.groupEnd()
 // 2. 템플릿 리터럴을 활용하여 <h2>박상현</h2><p>프론트엔드 개발자</p> 구조를 만드세요.
 console.groupCollapsed('2. innerHTML 실습')
 
-// 이곳에 코드를 작성하세요
+{
+  const practice2 = document.getElementById('practice2')
+  const container = practice2.querySelector('.card-container')
+
+  practice2.addEventListener('click', (e) => {
+    const button = e.target.closest('.btn-add')
+    if (!button) return
+    if (container.innerHTML.trim() !== '') return
+    alert('카드 렌더링')
+    renderCard()
+    // disable(button)
+  })
+
+  function enable(element) {
+    element.disabled = false
+    element.style.setProperty('cursor', 'pointer')
+  }
+
+  function disable(element) {
+    element.disabled = true
+    element.style.setProperty('cursor', 'not-allowed')
+  }
+
+  function renderCard() {
+    container.innerHTML = /* html */`
+  <h2> 박상현</h2>
+    <p>프론트엔드 개발자</p>
+`
+  }
+}
 
 console.groupEnd()
 
